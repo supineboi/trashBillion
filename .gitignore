@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+vendor/
+.venv/
+venv/
+
+# Build output
+build/
+dist/
+out/
+coverage/
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and runtime data
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Package manager caches
+.npm/
+.pnpm-store/
+yarn-error.log
+
+# Test artifacts
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# TypeScript / JavaScript
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Swift / Xcode
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# Archives
+*.zip
+*.tar.gz
+*.tgz
