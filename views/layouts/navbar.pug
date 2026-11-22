@@ -1,0 +1,10 @@
+nav
+    a.logo(href="/")
+        | TRASH
+        span BILLION.
+    .nav-tag The future of waste is wealth.
+    if path && path === '/sell'
+        a.btn(href="/sell/list") FIND TREASURE ↗
+    else
+        a.btn(href="/sell") GET RICH ↗
+

@@ -1,0 +1,69 @@
+extends layouts/main.pug
+
+block title 
+    title TRASHBILLION — Trash Makes You Rich
+block stylesheet
+    link(rel="stylesheet" href="/css/index.css")
+
+block content 
+    main.hero
+        section
+            .eyebrow
+                span.dot
+                | THE GARBAGE GOLD RUSH
+
+            h1
+                | YOUR TRASH.
+                br
+                | THEIR LOSS.
+                br
+                span YOUR PROFIT.
+
+            p.description
+                | Why throw away money when you can sell it?
+                | From your kitchen leftovers to your neighbour's
+                | abandoned cardboard empire, everything has a price.
+                | It's time to think outside the dustbin.
+
+            .actions
+                a.sell-button(href="/sell")
+                    | SELL YOUR GARBAGE 
+                    span ↗
+                p.small-note Zero shame. Maximum profit.
+
+        section.visual
+            .circle
+                .trash-emoji 🗑️
+
+            .floating-card.card-one
+                .card-label Your trash potential
+                .card-value UNLIMITED ↗
+
+            .floating-card.card-two
+                .card-label Business philosophy
+                .card-value Trash = Cash
+
+    .ticker
+        .ticker-track
+            span TRASH IS TREASURE
+            |  ✳
+            span STOP WASTING WEALTH
+            |  ✳
+            span YOUR DUSTBIN IS A GOLDMINE
+            |  ✳
+            span GET RICH. GET DIRTY.
+            |  ✳
+            span TRASH IS TREASURE
+            |  ✳
+            span STOP WASTING WEALTH
+            |  ✳
+            span YOUR DUSTBIN IS A GOLDMINE
+            |  ✳
+            span GET RICH. GET DIRTY.
+            |  ✳
+
+    footer.bottom
+        p © 2026 TRASHBILLION. All trash reserved.
+        p
+            | Made with 
+            strong ♻ questionable business ideas.

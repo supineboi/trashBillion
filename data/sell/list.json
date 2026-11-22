@@ -1,0 +1,35 @@
+[
+  {
+    "id": 123456,
+    "title": "Plastic Bottles and Containers",
+    "icon": "🧴",
+    "category": "Plastic",
+    "description": "A collection of various plastic bottles and containers.",
+    "quantity": 10,
+    "unit": "kg",
+    "location": "New York",
+    "phone": "1234567890"
+  },
+  {
+    "id": 878330,
+    "title": "Metal Cans and Scrap",
+    "icon": "🥫",
+    "category": "Metal & Aluminium",
+    "description": "this is the metal",
+    "quantity": "10",
+    "unit": "bags",
+    "location": "gandhi nagar",
+    "phone": "7102105532"
+  },
+  {
+    "id": 115181,
+    "title": "Antique Watch",
+    "icon": "⌚",
+    "category": "Metal & Aluminium",
+    "description": "Its is an old antique watch",
+    "quantity": "1",
+    "unit": "pieces",
+    "location": "Indore",
+    "phone": "7017109442"
+  }
+]

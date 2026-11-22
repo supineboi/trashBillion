@@ -1,0 +1,157 @@
+extends layouts/main.pug
+
+block title 
+    title Sell Your Garbage | TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/sell.css")
+
+block content
+    main.container
+
+        section
+            .eyebrow ✳ THE ROAD TO RICHES STARTS HERE
+
+            h1
+                | GOT
+                br
+                | TRASH?
+                br
+                span GET PAID.
+
+            p.intro
+                | That garbage you've been ignoring?
+                | Someone might be willing to pay for it.
+                | Stop looking at it as waste. Start looking
+                | at it as your next business opportunity.
+
+            .info-card
+                h3 💡 PRO TIP FOR FUTURE BILLIONAIRES
+                p
+                    | Cardboard, plastic, metal, newspapers...
+                    | Your house might be sitting on an
+                    | untapped goldmine. Collect only waste
+                    | you're authorized to collect.
+
+
+        section.form-card
+
+            #formContent
+
+                .form-heading
+                    h2 List Your Trash.
+                    p Every empire starts with a little garbage.
+
+                form(action="/sell" method="POST" id="sellForm")
+
+                    .form-group
+                        label(for="category") WHAT ARE YOU SELLING?
+                        select#category(name="category" required)
+                            option(value="") Select garbage category
+                            option Plastic
+                            option Paper & Newspapers
+                            option Cardboard
+                            option Metal & Aluminium
+                            option Glass
+                            option Electronic Waste
+                            option Mixed Recyclable Waste
+                            option Other
+
+                    .row
+                        .form-group
+                            label(for="title") GIVE YOUR GARBAGE A TITLE
+                            input#title(
+                                type="text"
+                                name="title"
+                                placeholder="e.g. Old Cardboard Boxes"
+                                required
+                            )
+                        .form-group
+                            label(for="icon") CHOOSE AN ICON
+                            select#icon(name="icon" required)
+                                option(value="") Select an icon
+                                for icon in icons
+                                    option(value=icon) #{icon}
+
+                    .form-group
+                        label(for="description") DESCRIBE YOUR TREASURE
+                        textarea#description(
+                            name="description"
+                            placeholder="Tell us about your precious garbage..."
+                            required
+                        )
+
+                    .row
+                        .form-group
+                            label(for="quantity") ESTIMATED QUANTITY
+                            input#quantity(
+                                type="number"
+                                name="quantity"
+                                min="0.1"
+                                step="0.1"
+                                placeholder="e.g. 10"
+                                required
+                            )
+
+                        .form-group
+                            label(for="unit") UNIT
+                            select#unit(name="unit" required)
+                                option(value="kg") Kilograms
+                                option(value="pieces") Pieces
+                                option(value="bags") Bags
+
+                    .form-group
+                        label(for="location") PICKUP LOCATION
+                        input#location(
+                            type="text"
+                            name="location"
+                            placeholder="Enter your area / city"
+                            required
+                        )
+
+                    .form-group
+                        label(for="phone") YOUR CONTACT NUMBER
+                        input#phone(
+                            type="tel"
+                            name="phone"
+                            placeholder="Enter 10-digit mobile number"
+                            pattern="[6-9][0-9]{9}"
+                            maxlength="10"
+                            required
+                        )
+
+                    button.submit-btn(type="submit")
+                        | SUBMIT MY GARBAGE ↗
+
+                    p.terms
+                        | By submitting, you confirm that you own the
+                        | waste or have permission to sell it.
+                        | No trespassing. No stealing. Just trash.
+
+
+            .success#successMessage
+                .emoji 🤑
+
+                h2
+                    | CONGRATULATIONS,
+                    br
+                    span TRASH TYCOON!
+
+                p
+                    | Your garbage listing has been submitted
+                    | in this demo. Your journey towards
+                    | becoming the world's first trash billionaire
+                    | has officially begun.
+
+                button(onclick="window.location.href='/'")
+                    | BACK TO HOMEPAGE ↗
+
+
+    // Footer
+    footer
+        p © 2026 TRASHBILLION. All trash reserved.
+
+        p
+            | Turning 
+            span waste into wealth.
+            |  Literally.
