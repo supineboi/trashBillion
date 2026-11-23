@@ -6,7 +6,13 @@ nav
         | TRASH
         span BILLION.
     .nav-tag The future of waste is wealth.
-    if path && path === '/sell'
-        +btn("/sell/list", "FIND TREASURE")
-    else
-        +btn("/sell", "GET RICH")
+
+    if !["/user/login", "/user/signup"].includes(path)
+        if path === '/sell/list'
+            +btn("/sell/list", "FIND TREASURE")
+
+        else
+            .btn-group
+                +btn("/sell", "GET RICH")
+                +btn("/user/login", "JOIN THE EMPIRE")
+                

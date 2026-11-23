@@ -1,0 +1,21 @@
+:root {
+    --bg: #10110e;
+    --green: #c6ff4d;
+    --white: #f4f4ed;
+    --muted: #999b91;
+    --card: #1a1c17;
+    --border: #ffffff18;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+}

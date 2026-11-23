@@ -1,6 +1,7 @@
 const express = require('express');
 const indexRouter = require('./routes/index');
 const sellRouter = require('./routes/sell');
+const userRouter = require('./routes/user')
 const path = require('path');
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/sell', sellRouter);
+app.use('/user', userRouter)
 app.use('/', indexRouter);
 
 app.listen(3000, () => {

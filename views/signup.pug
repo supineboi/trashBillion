@@ -1,0 +1,68 @@
+extends layouts/base
+
+block title
+    title Sign Up | TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/signup.css")
+
+block content
+    main.auth-container
+        section.auth-card
+            .auth-heading
+                .eyebrow ✳ YOUR JOURNEY STARTS HERE
+                h1
+                    | Join the 
+                    span empire.
+                p Create an account. Turn your trash into treasure.
+
+            form(action="/signup" method="POST")
+                .name-row
+                    .form-group
+                        label(for="firstName") FIRST NAME
+                        input#firstName(
+                            type="text"
+                            name="firstName"
+                            placeholder="John"
+                            autocomplete="given-name"
+                            required
+                        )
+
+                    .form-group
+                        label(for="lastName") LAST NAME
+                        input#lastName(
+                            type="text"
+                            name="lastName"
+                            placeholder="Doe"
+                            autocomplete="family-name"
+                            required
+                        )
+
+                .form-group
+                    label(for="email") EMAIL ADDRESS
+                    input#email(
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    )
+
+                .form-group
+                    label(for="password") PASSWORD
+                    input#password(
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                    )
+
+                button.submit-btn(type="submit") CREATE MY ACCOUNT ↗
+
+            .auth-footer
+                p
+                    | Already have an account?
+                    a(href="/user/login") 
+                        | Login

@@ -1,0 +1,46 @@
+extends layouts/base
+
+block title
+    title Login | TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/login.css")
+
+block content
+    main.auth-container
+        section.auth-card
+            .auth-heading
+                .eyebrow ✳ WELCOME BACK, TRASH TYCOON
+                h1
+                    | Welcome 
+                    span back.
+                p Your next fortune is just one login away.
+
+            form(action="/login" method="POST")
+                .form-group
+                    label(for="email") EMAIL ADDRESS
+                    input#email(
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    )
+
+                .form-group
+                    label(for="password") PASSWORD
+                    input#password(
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    )
+
+                button.submit-btn(type="submit") LOGIN TO YOUR ACCOUNT ↗
+
+            .auth-footer
+                p
+                    | Don't have an account?
+                    a(href="/user/signup") 
+                        | Sign up
