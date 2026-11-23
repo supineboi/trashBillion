@@ -1,0 +1,122 @@
+
+.error-container {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.error-content {
+    max-width: 650px;
+}
+
+.error-illustration {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.error-number {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(100px, 20vw, 180px);
+    font-weight: 800;
+    line-height: 1;
+    color: #c6ff4d;
+    opacity: 0.12;
+}
+
+.trash-icon {
+    position: absolute;
+    font-size: 65px;
+}
+
+.error-content .eyebrow {
+    color: #c6ff4d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.error-content h1 {
+    color: #f4f4ed;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+
+.error-content h1 span {
+    color: #c6ff4d;
+}
+
+.error-content > p {
+    max-width: 480px;
+    margin: 0 auto;
+    color: #999b91;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+}
+
+.home-btn,
+.market-btn {
+    display: inline-block;
+    padding: 15px 22px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.home-btn {
+    background: #c6ff4d;
+    color: #10110e;
+}
+
+.home-btn:hover {
+    background: #d5ff80;
+    transform: translateY(-2px);
+}
+
+.market-btn {
+    border: 1px solid #393a32;
+    color: #f4f4ed;
+}
+
+.market-btn:hover {
+    border-color: #c6ff4d;
+    color: #c6ff4d;
+}
+
+.error-note {
+    margin-top: 45px;
+    color: #686960;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 480px) {
+    .error-actions {
+        flex-direction: column;
+    }
+
+    .home-btn,
+    .market-btn {
+        width: 100%;
+    }
+}

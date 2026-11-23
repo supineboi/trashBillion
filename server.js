@@ -17,6 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/sell', sellRouter);
 app.use('/user', userRouter)
 app.use('/', indexRouter);
+app.use((req, res, next) => {
+  res.render('not-found')
+})
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');

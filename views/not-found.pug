@@ -1,0 +1,34 @@
+
+extends layouts/base 
+
+block title
+    title 404 - Page Not Found | TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/not-found.css")
+
+block content
+    main.error-container
+        section.error-content
+
+            .error-illustration
+                .error-number 404
+                .trash-icon 🗑️
+
+            .eyebrow ✳ LOST IN THE LANDFILL?
+
+            h1
+                | THIS PAGE IS 
+                span TRASH.
+
+            p
+                | Looks like this page has been thrown away.
+                | The good news? You can still find your way
+                | back to something valuable.
+
+            .error-actions
+                a.home-btn(href="/") BACK TO HOMEPAGE ↗
+                a.market-btn(href="/sell/list") FIND TREASURE
+
+            .error-note
+                | ERROR 404 — PAGE NOT FOUND
