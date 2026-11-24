@@ -1,0 +1,119 @@
+extends ../layouts/base
+
+block title 
+    title TRASHBILLION — Trash Makes You Rich
+
+block stylesheet
+    link(rel="stylesheet" href="/css/trash/list.css")
+
+block content
+    main.container
+
+        // Page Heading
+        section.top-section
+
+            div
+                .eyebrow ✳ THE GARBAGE MARKETPLACE
+
+                h1
+                    | ONE MAN'S TRASH.
+                    br
+                    span ANOTHER MAN'S GOLD.
+
+                p.subtitle
+                    | Explore the finest collection of unwanted treasures.
+                    | Your next business empire might be hiding in here.
+
+            // Statistics
+            .stats
+
+                .stat
+                    strong #{items.length}
+                    span Total listings
+
+                .stat
+                    strong ∞
+                    span Profit potential
+
+
+        // Search and Filters
+        section.filters
+
+            .search
+                input(type="search" placeholder="Search garbage, ID or location...")
+
+            select
+                option(value="") All categories
+                option(value="plastic") Plastic
+                option(value="paper") Paper
+                option(value="cardboard") Cardboard
+                option(value="metal") Metal
+                option(value="glass") Glass
+                option(value="electronic") Electronic Waste
+
+
+        // Listings Heading
+        .results-heading
+            h2 Latest Garbage Listings
+            span Showing #{items.length} listings
+
+        // Listings Grid / Empty State
+        if items.length > 0
+            section.grid
+                each item in items
+                    a.listing-card(href=`/trash/${item.id}` aria-label=`View details for ${item.title}`)
+                        .card-top
+                            .category-icon #{item.icon}
+                            span.status Available
+
+                        .card-body
+                            .listing-id ##{item.id}
+
+                            h3 #{item.title}
+
+                            p.description
+                                | #{item.description}
+
+                            .details
+                                div
+                                    .detail-label CATEGORY
+                                    .detail-value #{item.category}
+
+                                div
+                                    .detail-label QUANTITY
+                                    .detail-value #{item.quantity}
+
+                            .info
+                                .location
+                                    | 🇮🇳
+                                    span #{item.location}
+                                .phone
+                                    | 📞
+                                    span #{item.phone}
+
+                            .card-action
+                                span VIEW DETAILS
+                                span.arrow ↗
+        else
+            section.empty-state
+                .empty-icon 🗑️
+                .eyebrow ✳ THE LANDFILL IS EMPTY
+
+                h2
+                    | NO TRASH.
+                    br
+                    span NO TREASURE.
+
+                p
+                    | Looks like nobody has dropped their garbage here yet.
+                    | Be the first entrepreneur to turn trash into cash.
+
+                a.empty-btn(href="/trash/sell") + LIST YOUR GARBAGE
+
+    // Footer
+    footer
+        p © 2026 TRASHBILLION. All trash reserved.
+
+        p
+            | Made with 
+            span ♻ questionable business ideas.

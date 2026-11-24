@@ -1,9 +1,7 @@
-const router = require('express').Router();
-const path = require('path');
+const { getHomePage } = require('../controllers');
 
-router.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
-  res.render('index', {});
-});
+const router = require('express').Router();
+
+router.get('/', getHomePage);
 
 module.exports = router;

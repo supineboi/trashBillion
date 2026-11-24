@@ -1,10 +1,10 @@
-extends layouts/base
+extends ../layouts/base
 
 block title
     title Sign Up | TRASHBILLION
 
 block stylesheet
-    link(rel="stylesheet" href="/css/signup.css")
+    link(rel="stylesheet" href="/css/user/signup.css")
     link(rel="stylesheet" href="/css/layouts/error-modal.css")
 
 block content
@@ -68,7 +68,5 @@ block content
                     a(href="/user/login") 
                         | Login
 
-    include layouts/error-modal
-
-block scripts 
+    include ../layouts/error-modal
     script(src="/js/layouts/error-modal.js")

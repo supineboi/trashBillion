@@ -1,0 +1,82 @@
+
+extends ../layouts/base
+
+block title
+    title #{item.title} | TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/trash/details.css")
+
+block content
+    main.details-container
+
+        a.back-link(href="/trash")
+            span ←
+            | BACK TO MARKETPLACE
+
+        .details-layout
+
+            // Main listing information
+            section.details-main
+
+                .details-category
+                    span.category-icon #{item.icon}
+                    span #{item.category}
+
+                .details-heading
+                    .listing-id LISTING ##{item.id}
+
+                    h1= item.title
+
+                    .listing-status
+                        span.status-dot
+                        | AVAILABLE
+
+                .description-section
+                    h2 THE STORY BEHIND THIS TRASH
+                    p= item.description
+
+                .specifications
+                    h2 LISTING DETAILS
+
+                    .specification-grid
+                        .specification
+                            span.spec-label CATEGORY
+                            strong= item.category
+
+                        .specification
+                            span.spec-label QUANTITY
+                            strong= item.quantity
+
+                        .specification
+                            span.spec-label LOCATION
+                            strong= item.location
+
+            // Seller information
+            aside.seller-card
+
+                .seller-card-top
+                    span ✳
+                    span SELLER INFORMATION
+
+                h2 Interested in this treasure?
+
+                p
+                    | Don't let this opportunity go to waste.
+                    | Contact the seller directly.
+
+                .seller-contact
+                    span.spec-label CONTACT NUMBER
+                    strong +91 #{item.phone}
+
+                a.contact-button(href=`tel:+91${item.phone}`)
+                    | CONTACT SELLER
+                    span ↗
+
+                p.seller-note
+                    | TRASHBILLION connects trash with opportunity.
+                    | Make your deal responsibly.
+
+        footer.details-footer
+            p © 2026 TRASHBILLION. All trash reserved.
+            a(href="/trash") EXPLORE MORE TRASH ↗

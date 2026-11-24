@@ -1,10 +1,10 @@
-extends layouts/base
+extends ../layouts/base
 
 block title 
     title Sell Your Garbage | TRASHBILLION
 
 block stylesheet
-    link(rel="stylesheet" href="/css/sell.css")
+    link(rel="stylesheet" href="/css/trash/sell.css")
 
 block content
     main.container
@@ -42,7 +42,7 @@ block content
                     h2 List Your Trash.
                     p Every empire starts with a little garbage.
 
-                form(action="/sell" method="POST" id="sellForm")
+                form(action="/trash/sell" method="POST" id="sellForm")
 
                     .form-group
                         label(for="category") WHAT ARE YOU SELLING?
@@ -115,7 +115,7 @@ block content
                             type="tel"
                             name="phone"
                             placeholder="Enter 10-digit mobile number"
-                            pattern="[6-9][0-9]{9}"
+                            pattern="0-9]{10}"
                             maxlength="10"
                             required
                         )

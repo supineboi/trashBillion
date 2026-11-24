@@ -1,9 +1,10 @@
 const express = require('express');
 const indexRouter = require('./routes/index');
-const sellRouter = require('./routes/sell');
-const userRouter = require('./routes/user')
+const trashRoutes = require('./routes/trash');
+const userRoutes = require('./routes/user')
 const path = require('path');
 const { notFoundPage } = require('./controllers/error');
+const initializeModels = require('./models');
 
 const app = express();
 
@@ -12,29 +13,13 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use((req, res, next) => {
-    console.log("Requested URL:", req.url);
-    next();
-});
 
-const fs = require('fs');
-
-const jsPath = path.join(
-    __dirname,
-    'public',
-    'js',
-    'layouts',
-    'error-modal.js'
-);
-
-console.log('Server directory:', __dirname);
-console.log('JS file path:', jsPath);
-console.log('File exists:', fs.existsSync(jsPath));
+initializeModels();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/sell', sellRouter);
-app.use('/user', userRouter)
+app.use('/trash', trashRoutes);
+app.use('/user', userRoutes)
 app.use('/', indexRouter);
 app.use(notFoundPage)
 

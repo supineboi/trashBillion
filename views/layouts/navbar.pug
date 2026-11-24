@@ -8,11 +8,13 @@ nav
     .nav-tag The future of waste is wealth.
 
     if !["/user/login", "/user/signup"].includes(path)
-        if path === '/sell/list'
-            +btn("/sell/list", "FIND TREASURE")
+        if path === '/trash/sell'
+            +btn("/trash", "FIND TREASURE")
 
         else
             .btn-group
-                +btn("/sell", "GET RICH")
-                +btn("/user/login", "JOIN THE EMPIRE")
+                +btn("/trash/sell", "GET RICH")
+
+                if !isLoggedIn
+                    +btn("/user/login", "JOIN THE EMPIRE")
                 

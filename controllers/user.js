@@ -1,19 +1,20 @@
 const User = require("../models/user")
 
 exports.loginPage = (req,res) => {
-    res.render('login', {
-        path: "/user/login"
+    res.render('user/login', {
+        path: "user/login"
     })
 }
 
 exports.signupPage = (req,res) => {
-    res.render('signup', {
-        path: "/user/signup"
+    res.render('user/signup', {
+        path: "user/signup"
     })
 }
 
 exports.signup = (req,res) => {
     User.create(req.body);
+    res.redirect("/user/login");
 }
 
 exports.login = (req, res) => {
@@ -24,14 +25,14 @@ exports.login = (req, res) => {
 
     if(user && Object.keys(user).length){
         if(user.password === password){
-            return res.redirect('/')
+            return res.redirect('/?isLoggedIn=true')
         }
-        return res.render('login', {
+        return res.render('user/login', {
             path: "/user/login",
             error: "Invalid Password"
         })
     }
-    return res.render('login', {
+    return res.render('user/login', {
         path: "/user/login",
         error: "Invalid Credentials"
     })
