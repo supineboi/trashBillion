@@ -5,6 +5,7 @@ block title
 
 block stylesheet
     link(rel="stylesheet" href="/css/login.css")
+    link(rel="stylesheet" href="/css/layouts/error-modal.css")
 
 block content
     main.auth-container
@@ -16,7 +17,7 @@ block content
                     span back.
                 p Your next fortune is just one login away.
 
-            form(action="/login" method="POST")
+            form(action="/user/login" method="POST")
                 .form-group
                     label(for="email") EMAIL ADDRESS
                     input#email(
@@ -44,3 +45,6 @@ block content
                     | Don't have an account?
                     a(href="/user/signup") 
                         | Sign up
+    
+    include layouts/error-modal
+    script(src="/js/layouts/error-modal.js" defer)

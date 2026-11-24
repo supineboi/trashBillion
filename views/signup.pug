@@ -5,6 +5,7 @@ block title
 
 block stylesheet
     link(rel="stylesheet" href="/css/signup.css")
+    link(rel="stylesheet" href="/css/layouts/error-modal.css")
 
 block content
     main.auth-container
@@ -16,7 +17,7 @@ block content
                     span empire.
                 p Create an account. Turn your trash into treasure.
 
-            form(action="/signup" method="POST")
+            form(action="/user/signup" method="POST")
                 .name-row
                     .form-group
                         label(for="firstName") FIRST NAME
@@ -66,3 +67,8 @@ block content
                     | Already have an account?
                     a(href="/user/login") 
                         | Login
+
+    include layouts/error-modal
+
+block scripts 
+    script(src="/js/layouts/error-modal.js")

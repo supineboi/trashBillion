@@ -1,0 +1,8 @@
+
+if error
+    .auth-error-toast#authErrorToast(role="alert" aria-live="assertive")
+        span.auth-error-message= error
+        button.auth-error-close(
+            type="button"
+            aria-label="Close error message"
+        ) &times;
