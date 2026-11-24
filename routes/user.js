@@ -1,17 +1,13 @@
 const express = require('express');
 const router = express.Router()
-const path = require('path')
+const { loginPage, signupPage, signup, login } = require('../controllers/user');
 
-router.get('/login', (req,res) => {
-    res.render('login', {
-        path: "/user/login"
-    })
-})
+router.get('/login', loginPage)
 
-router.get('/signup', (req, res) => {
-    res.render('signup', {
-        path: "/user/signup"
-    })
-})
+router.get('/signup', signupPage)
+
+router.post("/signup", signup)
+
+router.post("/login", login)
 
 module.exports = router;
