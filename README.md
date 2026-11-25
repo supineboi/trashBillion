@@ -65,15 +65,19 @@ cd trashBillion
 npm install
 ```
 
-3. Update the MySQL credentials in `config/mysql.js`:
+3. Create a local environment file:
 
-```js
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'your-password',
-    database: 'trashBillion'
-});
+```bash
+cp example.env .env
+```
+
+4. Update the MySQL credentials in `.env`:
+
+```env
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PASSWORD=your-mysql-password
+MYSQL_DATABASE=trashBillion
 ```
 
 The application creates the `trashBillion` database and the `user` and `trash` tables when it starts.
