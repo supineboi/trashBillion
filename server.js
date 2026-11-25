@@ -4,7 +4,7 @@ const trashRoutes = require('./routes/trash');
 const userRoutes = require('./routes/user')
 const path = require('path');
 const { notFoundPage } = require('./controllers/error');
-const initializeModels = require('./models');
+const initializeModels = require('./models/mysql');
 
 const app = express();
 

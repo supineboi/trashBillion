@@ -1,4 +1,4 @@
-const User = require("../models/user")
+const User = require("../models/mysql/user")
 
 exports.loginPage = (req,res) => {
     res.render('user/login', {
@@ -12,16 +12,15 @@ exports.signupPage = (req,res) => {
     })
 }
 
-exports.signup = (req,res) => {
-    User.create(req.body);
+exports.signup = async (req,res) => {
+    await User.create(req.body);
     res.redirect("/user/login");
 }
 
-exports.login = (req, res) => {
+exports.login =  async (req, res) => {
     const {email, password} = req.body;
-    const users = User.read();
-
-    const user = users.find( user => user.email === email)
+    console.log("this is email :: ", email)
+    const user = await User.read(email);
 
     if(user && Object.keys(user).length){
         if(user.password === password){
