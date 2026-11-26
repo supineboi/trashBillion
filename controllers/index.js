@@ -1,7 +1,6 @@
-exports.getHomePage = (req,res) => {
-    const {isLoggedIn} = req.query;
-    // res.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
+
+exports.getHomePage = (req, res) => {
     res.render('index', {
-        isLoggedIn: isLoggedIn
+        path: '/'
     });
-}
+};

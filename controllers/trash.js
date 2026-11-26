@@ -1,17 +1,22 @@
 const path = require('path');
 const fs = require('fs');
-const { generateListingId, icons } = require('../utils/helpers');
-const Trash = require('../models/mysql/trash');
+const { generateListingId, icons, formattedNumber } = require('../utils/helpers');
+const Trash = require('../models/sequelize/trash');
 
 exports.getList = async (req,res) => {
     // res.sendFile(path.join(__dirname, '..', 'views', 'sellList.html'));
-    const trashList = await Trash.readAll();
-    res.render('trash/list', { items: trashList });
+    const trashList = await Trash.findAll();
+    res.render('trash/list', { items: trashList.map(trash => ({
+        ...trash.toJSON(),
+        quantity: formattedNumber(trash.quantity),
+        growth: formattedNumber(trash.growth),
+        valuation: formattedNumber(trash.valuation, true)
+    })) });
 }
 
 exports.getTrash = async (req,res, next) => {
     const {id} = req.params;
-    const trash = await Trash.read(+id);
+    const trash = await Trash.findByPk(id);
 
     if(trash && Object.keys(trash).length){
         return res.render('trash/details', {

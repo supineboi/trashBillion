@@ -392,9 +392,142 @@ footer span {
 }
 
 
+/* Market banner */
 
+.market-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-top: 45px;
+    padding: 28px 30px;
+    background: #c6ff4d0b;
+    border: 1px solid #c6ff4d30;
+    border-radius: 12px;
+}
 
+.market-banner-copy > span,
+.market-index > span {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
 
+.market-banner h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    margin-top: 8px;
+}
+
+.market-banner p,
+.market-index small {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.market-index {
+    text-align: right;
+}
+
+.market-index strong {
+    display: block;
+    color: var(--green);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+/* Asset cards */
+
+.card-top {
+    height: 175px;
+}
+
+.asset-growth {
+    position: absolute;
+    bottom: 14px;
+    right: 15px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.valuation {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+.valuation-price {
+    color: var(--green);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.card-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 18px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.card-action .arrow {
+    color: var(--green);
+    font-size: 17px;
+}
+
+.listing-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.market-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.market-disclaimer > span {
+    color: var(--green);
+}
+
+.market-disclaimer strong {
+    color: var(--white);
+}
+
+/* Responsive */
+
+@media(max-width: 600px) {
+    .market-banner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .market-index {
+        text-align: left;
+    }
+
+    .market-banner h2 {
+        font-size: 19px;
+    }
+}
 
 /* Clickable Listing Cards */
 

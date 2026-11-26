@@ -1,69 +1,74 @@
+
 extends layouts/base
 
-block title 
-    title TRASHBILLION — Trash Makes You Rich
+block title
+    title TRASHBILLION — The World's Most Exclusive Garbage Market
+
 block stylesheet
     link(rel="stylesheet" href="/css/index.css")
 
-block content 
+block content
     main.hero
         section
             .eyebrow
                 span.dot
-                | THE GARBAGE GOLD RUSH
+                | THE WORLD'S MOST QUESTIONABLE MARKET
 
             h1
-                | YOUR TRASH.
+                | ONE MAN'S TRASH.
                 br
-                | THEIR LOSS.
+                | ANOTHER MAN'S
                 br
-                span YOUR PROFIT.
+                span BILLION-DOLLAR ASSET.
 
             p.description
-                | Why throw away money when you can sell it?
-                | From your kitchen leftovers to your neighbour's
-                | abandoned cardboard empire, everything has a price.
-                | It's time to think outside the dustbin.
+                | Welcome to the market where garbage gets a valuation,
+                | sellers become CEOs, and buyers call themselves investors.
+                | Because apparently, throwing things in a bin was too simple.
 
             .actions
-                a.sell-button(href="/sell")
-                    | SELL YOUR GARBAGE 
+                a.sell-button(href="/trash")
+                    | EXPLORE THE MARKET
                     span ↗
-                p.small-note Zero shame. Maximum profit.
+
+                a.sell-button.secondary(href="/trash/sell")
+                    | LIST YOUR TRASH
+                    span ↗
+
+            p.small-note No real money. No real deals. Questionable business decisions.
 
         section.visual
             .circle
                 .trash-emoji 🗑️
 
             .floating-card.card-one
-                .card-label Your trash potential
-                .card-value UNLIMITED ↗
+                .card-label YOUR TRASH VALUATION
+                .card-value UNREASONABLY HIGH ↗
 
             .floating-card.card-two
-                .card-label Business philosophy
-                .card-value Trash = Cash
+                .card-label MARKET PHILOSOPHY
+                .card-value Trash. But make it premium.
 
     .ticker
         .ticker-track
-            span TRASH IS TREASURE
-            |  ✳
-            span STOP WASTING WEALTH
-            |  ✳
-            span YOUR DUSTBIN IS A GOLDMINE
-            |  ✳
-            span GET RICH. GET DIRTY.
-            |  ✳
-            span TRASH IS TREASURE
-            |  ✳
-            span STOP WASTING WEALTH
-            |  ✳
-            span YOUR DUSTBIN IS A GOLDMINE
-            |  ✳
-            span GET RICH. GET DIRTY.
-            |  ✳
+            span TRASH IS THE NEW GOLD
+            | ✳
+            span INVEST IN THE UNWANTED
+            | ✳
+            span FINANCIAL FREEDOM IS IN THE BIN
+            | ✳
+            span THE MARKET HAS LOST ITS MIND
+            | ✳
+            span TRASH IS THE NEW GOLD
+            | ✳
+            span INVEST IN THE UNWANTED
+            | ✳
+            span FINANCIAL FREEDOM IS IN THE BIN
+            | ✳
+            span THE MARKET HAS LOST ITS MIND
+            | ✳
 
     footer.bottom
         p © 2026 TRASHBILLION. All trash reserved.
         p
-            | Made with 
-            strong ♻ questionable business ideas.
+            | A fictional marketplace. A very real-world problem.

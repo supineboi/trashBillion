@@ -1,3 +1,4 @@
+
 mixin btn(href, text)
     a.btn(href=href) #{text} ↗
 
@@ -5,16 +6,9 @@ nav
     a.logo(href="/")
         | TRASH
         span BILLION.
-    .nav-tag The future of waste is wealth.
 
-    if !["/user/login", "/user/signup"].includes(path)
-        if path === '/trash/sell'
-            +btn("/trash", "FIND TREASURE")
+    .nav-tag THE WORLD'S MOST QUESTIONABLE MARKET
 
-        else
-            .btn-group
-                +btn("/trash/sell", "GET RICH")
-
-                if !isLoggedIn
-                    +btn("/user/login", "JOIN THE EMPIRE")
-                
+    .btn-group
+        +btn("/trash", "MARKETPLACE")
+        +btn("/trash/sell", "BECOME A CEO")

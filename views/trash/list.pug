@@ -1,46 +1,53 @@
+
 extends ../layouts/base
 
-block title 
-    title TRASHBILLION — Trash Makes You Rich
+block title
+    title TRASHBILLION — The Garbage Exchange
 
 block stylesheet
     link(rel="stylesheet" href="/css/trash/list.css")
 
 block content
+    -
+        const listings = items;
+
     main.container
-
-        // Page Heading
         section.top-section
-
             div
-                .eyebrow ✳ THE GARBAGE MARKETPLACE
+                .eyebrow ✳ THE WORLD'S MOST QUESTIONABLE EXCHANGE
 
                 h1
-                    | ONE MAN'S TRASH.
+                    | THE MARKET IS
                     br
-                    span ANOTHER MAN'S GOLD.
+                    span TRASHING IT.
 
                 p.subtitle
-                    | Explore the finest collection of unwanted treasures.
-                    | Your next business empire might be hiding in here.
+                    | Discover extraordinary assets nobody asked for.
+                    | Because apparently, even garbage deserves a valuation.
 
-            // Statistics
             .stats
+                .stat
+                    strong 06
+                    span Available assets
 
                 .stat
-                    strong #{items.length}
-                    span Total listings
+                    strong ₹99Cr+
+                    span Imaginary market cap
 
-                .stat
-                    strong ∞
-                    span Profit potential
+        section.market-banner
+            .market-banner-copy
+                span LIVE MARKET REPORT
+                h2 The garbage economy is booming.
+                p Your financial advisor has no idea what's happening.
 
+            .market-index
+                span TBX MARKET INDEX
+                strong +420.69%
+                small ▲ COMPLETELY UNREGULATED
 
-        // Search and Filters
         section.filters
-
             .search
-                input(type="search" placeholder="Search garbage, ID or location...")
+                input(type="search" placeholder="Search assets, categories or locations...")
 
             select
                 option(value="") All categories
@@ -49,71 +56,68 @@ block content
                 option(value="cardboard") Cardboard
                 option(value="metal") Metal
                 option(value="glass") Glass
-                option(value="electronic") Electronic Waste
+                option(value="electronic") Electronic waste
 
+            select
+                option(value="") Sort by
+                option(value="newest") Newest
+                option(value="price") Highest valuation
+                option(value="growth") Highest growth
 
-        // Listings Heading
         .results-heading
-            h2 Latest Garbage Listings
-            span Showing #{items.length} listings
+            div
+                .eyebrow THE ASSET EXCHANGE
+                h2 Latest investment opportunities
 
-        // Listings Grid / Empty State
-        if items.length > 0
-            section.grid
-                each item in items
-                    a.listing-card(href=`/trash/${item.id}` aria-label=`View details for ${item.title}`)
-                        .card-top
-                            .category-icon #{item.icon}
-                            span.status Available
+            span 06 ASSETS FOUND
 
-                        .card-body
-                            .listing-id ##{item.id}
+        section.grid
+            each item in listings
+                a.listing-card(href=`/trash/${item.id}`)
+                    .card-top
+                        .category-icon #{item.icon}
 
-                            h3 #{item.title}
+                        span.status #{item.status}
 
-                            p.description
-                                | #{item.description}
+                        span.asset-growth +#{item.growth}%
 
-                            .details
-                                div
-                                    .detail-label CATEGORY
-                                    .detail-value #{item.category}
+                    .card-body
+                        .listing-id ##{item.id}
 
-                                div
-                                    .detail-label QUANTITY
-                                    .detail-value #{item.quantity}
+                        h3 #{item.title}
 
-                            .info
-                                .location
-                                    | 🇮🇳
-                                    span #{item.location}
-                                .phone
-                                    | 📞
-                                    span #{item.phone}
+                        p.description #{item.description}
 
-                            .card-action
-                                span VIEW DETAILS
-                                span.arrow ↗
-        else
-            section.empty-state
-                .empty-icon 🗑️
-                .eyebrow ✳ THE LANDFILL IS EMPTY
+                        .details
+                            div
+                                .detail-label CATEGORY
+                                .detail-value #{item.category}
 
-                h2
-                    | NO TRASH.
-                    br
-                    span NO TREASURE.
+                            div
+                                .detail-label QUANTITY
+                                .detail-value #{item.quantity} #{item.unit}
 
-                p
-                    | Looks like nobody has dropped their garbage here yet.
-                    | Be the first entrepreneur to turn trash into cash.
+                        .info
+                            .location
+                                span 📍
+                                span #{item.location}
 
-                a.empty-btn(href="/trash/sell") + LIST YOUR GARBAGE
+                        .valuation
+                            div
+                                .detail-label CURRENT IMAGINARY VALUATION
+                                .valuation-price #{item.valuation}
 
-    // Footer
+                        .card-action
+                            span ANALYSE THIS ASSET
+                            span.arrow ↗
+
+        section.market-disclaimer
+            span ✳
+            p
+                strong A SMALL REALITY CHECK:
+                |  These are fictional listings with fictional valuations.
+                | The garbage problem outside your window, unfortunately, isn't.
+
     footer
         p © 2026 TRASHBILLION. All trash reserved.
-
-        p
-            | Made with 
-            span ♻ questionable business ideas.
+        p The joke is fictional. The litter isn't.
