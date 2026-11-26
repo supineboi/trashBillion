@@ -1,0 +1,341 @@
+
+.portfolio-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 55px 24px 80px;
+}
+
+.portfolio-header {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.portfolio-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1.05;
+    margin: 18px 0;
+}
+
+.portfolio-header h1 span {
+    color: var(--green);
+}
+
+.portfolio-header p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Summary */
+
+.portfolio-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.summary-main > span,
+.item-performance > span,
+.item-price > span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.summary-main h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 12px 0;
+}
+
+.portfolio-growth {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.portfolio-growth span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.summary-stats {
+    display: flex;
+    gap: 35px;
+}
+
+.summary-stat strong,
+.summary-stat span {
+    display: block;
+}
+
+.summary-stat strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 25px;
+}
+
+.summary-stat span {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+/* Investment list */
+
+.portfolio-section {
+    margin-top: 55px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    margin-top: 8px;
+}
+
+.section-heading > span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.portfolio-list {
+    display: grid;
+    gap: 12px;
+}
+
+.portfolio-item {
+    display: grid;
+    grid-template-columns: 65px minmax(150px, 1fr) 140px 150px 35px;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.item-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    font-size: 27px;
+    background: #ffffff08;
+    border-radius: 9px;
+}
+
+.item-id {
+    color: var(--muted);
+    font-size: 9px;
+    margin-bottom: 6px;
+}
+
+.item-details h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.item-details > span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.item-performance strong,
+.item-price strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.item-performance strong {
+    color: var(--green);
+}
+
+.remove-button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    color: #ff6464;
+    border-color: #ff6464;
+}
+
+/* Actions */
+
+.portfolio-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.continue-button,
+.checkout-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.continue-button {
+    color: var(--white);
+    border: 1px solid var(--border);
+    background: transparent;
+}
+
+.checkout-button {
+    border: none;
+    background: var(--green);
+    color: #10110e;
+}
+
+.continue-button:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.checkout-button:hover {
+    opacity: .85;
+}
+
+/* Empty state */
+
+.empty-portfolio {
+    padding: 65px 20px;
+    text-align: center;
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.empty-portfolio h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+}
+
+.empty-portfolio p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 12px 0 25px;
+}
+
+/* Warning */
+
+.portfolio-warning {
+    display: flex;
+    gap: 15px;
+    margin-top: 45px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.portfolio-warning > span {
+    color: var(--green);
+    font-size: 20px;
+}
+
+.portfolio-warning strong {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.portfolio-warning p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+/* Responsive */
+
+@media(max-width: 850px) {
+    .portfolio-summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .portfolio-item {
+        grid-template-columns: 55px 1fr 30px;
+    }
+
+    .item-performance,
+    .item-price {
+        grid-column: 2;
+    }
+
+    .remove-button {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
+@media(max-width: 550px) {
+    .portfolio-container {
+        padding: 35px 16px 60px;
+    }
+
+    .portfolio-summary {
+        padding: 22px;
+    }
+
+    .summary-stats {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .summary-stat strong {
+        font-size: 20px;
+    }
+
+    .portfolio-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .portfolio-actions form,
+    .checkout-button,
+    .continue-button {
+        width: 100%;
+    }
+}

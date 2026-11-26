@@ -1,0 +1,139 @@
+
+extends ../layouts/base
+
+block title
+    title My Investment Portfolio — TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/cart/index.css")
+
+block content
+    -
+        const investments = [
+            {
+                id: 'TB-001',
+                title: 'Premium Roadside Plastic',
+                category: 'Plastic',
+                quantity: '24 bottles',
+                icon: '🧴',
+                price: 999999,
+                growth: '+420.69%'
+            },
+            {
+                id: 'TB-002',
+                title: 'Vintage Cardboard Empire',
+                category: 'Cardboard',
+                quantity: '18 kg',
+                icon: '📦',
+                price: 450000,
+                growth: '+180%'
+            },
+            {
+                id: 'TB-003',
+                title: 'Luxury Riverbank Waste',
+                category: 'Mixed Waste',
+                quantity: '12 kg',
+                icon: '🗑️',
+                price: 1200000,
+                growth: '+690%'
+            }
+        ]
+
+        const total = investments.reduce((sum, item) => sum + item.price, 0)
+
+        const formatPrice = (price) => '₹' + price.toLocaleString('en-IN')
+
+    main.portfolio-container
+        section.portfolio-header
+            .eyebrow ✳ YOUR FINANCIAL MASTERPIECE
+
+            h1
+                | YOUR TRASH.
+                br
+                span YOUR EMPIRE.
+
+            p
+                | Every great investor starts somewhere.
+                | Apparently, you started in a garbage dump.
+
+        section.portfolio-summary
+            .summary-main
+                span TOTAL IMAGINARY PORTFOLIO VALUE
+
+                h2 #{formatPrice(total)}
+
+                .portfolio-growth
+                    | ▲ +420.69%
+                    span  UNREALIZED FICTIONAL RETURNS
+
+            .summary-stats
+                .summary-stat
+                    strong #{investments.length}
+                    span Assets acquired
+
+                .summary-stat
+                    strong 100%
+                    span Financial delusion
+
+                .summary-stat
+                    strong A+
+                    span Confidence level
+
+        section.portfolio-section
+            .section-heading
+                div
+                    .eyebrow YOUR ASSET COLLECTION
+                    h2 Your investments
+
+                span #{investments.length} ASSETS
+
+            if investments.length
+                .portfolio-list
+                    each item in investments
+                        article.portfolio-item
+                            .item-icon #{item.icon}
+
+                            .item-details
+                                .item-id ##{item.id}
+                                h3 #{item.title}
+                                span #{item.category} · #{item.quantity}
+
+                            .item-performance
+                                span IMAGINARY GROWTH
+                                strong #{item.growth}
+
+                            .item-price
+                                span PURCHASE VALUE
+                                strong #{formatPrice(item.price)}
+
+                            form(action="/portfolio/remove" method="POST")
+                                input(type="hidden" name="listingId" value=item.id)
+                                button.remove-button(type="submit" aria-label="Remove investment") ×
+
+                .portfolio-actions
+                    a.continue-button(href="/trash") ← FIND MORE ASSETS
+
+                    form(action="/checkout" method="GET")
+                        button.checkout-button(type="submit")
+                            | PROCEED TO CHECKOUT ↗
+
+            else
+                .empty-portfolio
+                    .empty-icon 🗑️
+
+                    h2 Your empire is empty.
+
+                    p Even billionaires have to make their first questionable investment.
+
+                    a.continue-button(href="/trash") EXPLORE THE MARKET ↗
+
+        section.portfolio-warning
+            span ⚠
+            div
+                strong A NOTE FROM OUR FINANCIAL DEPARTMENT
+                p
+                    | Your portfolio is imaginary. Your returns are imaginary.
+                    | The garbage problem outside is very much real.
+
+    footer
+        p © 2026 TRASHBILLION. All trash reserved.

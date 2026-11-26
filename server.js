@@ -2,6 +2,7 @@ const express = require('express');
 const indexRouter = require('./routes/index');
 const trashRoutes = require('./routes/trash');
 const userRoutes = require('./routes/user')
+const cartRoutes = require('./routes/cart')
 const path = require('path');
 const { notFoundPage } = require('./controllers/error');
 const initializeModels = require('./models/sequelize');
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/trash', trashRoutes);
 app.use('/user', userRoutes)
+app.use('/cart', cartRoutes)
 app.use('/', indexRouter);
 app.use(notFoundPage)
 
