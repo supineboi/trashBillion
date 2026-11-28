@@ -1,0 +1,132 @@
+
+extends ../layouts/base
+
+block title
+    title Investment Recorded — TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/cart/success.css")
+
+block content
+    -
+        const formatCurrency = (value) =>
+            '₹' + Number(value).toLocaleString('en-IN')
+
+    main.success-container
+        a.back-link(href="/trash") ← BACK TO MARKETPLACE
+
+        section.success-hero
+            .success-icon
+                span ✓
+
+            .eyebrow ✳ TRANSACTION RECORDED
+
+            h1
+                | CONGRATULATIONS,
+                br
+                span YOU ABSOLUTE LEGEND.
+
+            p.success-description
+                | Your questionable investment decision has officially
+                | entered the records of imaginary financial history.
+
+            .order-reference
+                span ORDER REFERENCE
+                strong= order.orderNumber
+
+        section.success-layout
+            .success-main
+                .success-card
+                    .card-heading
+                        div
+                            .eyebrow YOUR ASSET COLLECTION
+                            h2 Your acquired assets
+
+                        span #{order.items.length} ASSETS
+
+                    .success-list
+                        each item in order.items
+                            article.success-item
+                                .success-item-image
+                                    if item.imageUrl
+                                        img(
+                                            src=item.imageUrl
+                                            alt=item.title
+                                            loading="lazy"
+                                        )
+                                    else if item.icon
+                                        span= item.icon
+                                    else
+                                        span 🗑️
+
+                                .success-item-details
+                                    .success-item-id
+                                        | ##{item.trashId || 'ARCHIVED'}
+
+                                    h3= item.title
+
+                                    p #{item.categoryName} · #{item.quantity} #{item.unit}
+
+                                .success-item-value
+                                    span LINE TOTAL
+                                    strong= formatCurrency(item.lineTotal)
+
+                    .success-total
+                        span TOTAL IMAGINARY PORTFOLIO VALUE
+                        strong= formatCurrency(order.totalAmount)
+
+                .success-message
+                    span.message-icon 🌍
+
+                    div
+                        .eyebrow A SMALL REALITY CHECK
+                        h3 The real world isn't fictional.
+
+                        p
+                            | We can assign imaginary valuations to garbage here.
+                            | Outside this marketplace, littering remains a very real problem.
+
+            aside.success-sidebar
+                .sidebar-card
+                    .eyebrow OFFICIAL RECORD
+
+                    h2 Order summary
+
+                    .order-status
+                        span.status-dot
+                        strong= order.status
+
+                    .sidebar-divider
+
+                    .sidebar-detail
+                        span ORDER REFERENCE
+                        strong= order.orderNumber
+
+                    .sidebar-detail
+                        span DATE RECORDED
+                        strong= order.date
+
+                    .sidebar-detail
+                        span ASSETS RECORDED
+                        strong= order.items.length
+
+                    .sidebar-divider
+
+                    .sidebar-total
+                        span TOTAL FICTIONAL VALUE
+                        strong= formatCurrency(order.totalAmount)
+
+                    p.sidebar-disclaimer
+                        | No actual payment was collected.
+                        | No garbage was purchased or delivered.
+                        | This is a fictional transaction.
+
+                    a.success-primary-btn(href="/trash")
+                        | EXPLORE MARKETPLACE ↗
+
+                    a.success-secondary-btn(href="/user/orders")
+                        | VIEW ORDER HISTORY
+
+        footer.success-footer
+            p © 2026 TRASHBILLION. All trash reserved.
+            p The transaction is fictional. The litter isn't.

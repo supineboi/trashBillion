@@ -9,39 +9,14 @@ block stylesheet
 
 block content
     -
-        const investments = [
-            {
-                id: 'TB-001',
-                title: 'Premium Roadside Plastic',
-                category: 'Plastic',
-                quantity: '24 bottles',
-                icon: '🧴',
-                price: 999999,
-                growth: '+420.69%'
-            },
-            {
-                id: 'TB-002',
-                title: 'Vintage Cardboard Empire',
-                category: 'Cardboard',
-                quantity: '18 kg',
-                icon: '📦',
-                price: 450000,
-                growth: '+180%'
-            },
-            {
-                id: 'TB-003',
-                title: 'Luxury Riverbank Waste',
-                category: 'Mixed Waste',
-                quantity: '12 kg',
-                icon: '🗑️',
-                price: 1200000,
-                growth: '+690%'
-            }
-        ]
-
-        const total = investments.reduce((sum, item) => sum + item.price, 0)
-
-        const formatPrice = (price) => '₹' + price.toLocaleString('en-IN')
+        const [totalPrice, totalGrowth] = investments.reduce(
+            (sum, item) => [
+                sum[0] + item.price,
+                sum[1] + item.growth
+            ],
+            [0,0]
+        )
+        const formatPrice = (price) => '₹' + Number(price).toLocaleString('en-IN')
 
     main.portfolio-container
         section.portfolio-header
@@ -60,10 +35,10 @@ block content
             .summary-main
                 span TOTAL IMAGINARY PORTFOLIO VALUE
 
-                h2 #{formatPrice(total)}
+                h2 #{formatPrice(totalPrice)}
 
                 .portfolio-growth
-                    | ▲ +420.69%
+                    | ▲ +#{totalGrowth}%
                     span  UNREALIZED FICTIONAL RETURNS
 
             .summary-stats
@@ -91,19 +66,29 @@ block content
                 .portfolio-list
                     each item in investments
                         article.portfolio-item
-                            .item-icon #{item.icon}
+                            .item-icon
+                                if item.imageUrl
+                                    img(
+                                        src=item.imageUrl
+                                        alt=item.title
+                                        loading="lazy"
+                                    )
+                                else if item.icon
+                                    span= item.icon
+                                else
+                                    span 🗑️
 
                             .item-details
                                 .item-id ##{item.id}
-                                h3 #{item.title}
-                                span #{item.category} · #{item.quantity}
+                                h3= item.title
+                                span #{item.category} · #{item.quantity} #{item.unit}
 
                             .item-performance
                                 span IMAGINARY GROWTH
-                                strong #{item.growth}
+                                strong +#{item.growth}%
 
                             .item-price
-                                span PURCHASE VALUE
+                                span CURRENT VALUE
                                 strong #{formatPrice(item.price)}
 
                             form(action="/portfolio/remove" method="POST")
@@ -113,7 +98,7 @@ block content
                 .portfolio-actions
                     a.continue-button(href="/trash") ← FIND MORE ASSETS
 
-                    form(action="/checkout" method="GET")
+                    form(action="/portfolio/checkout" method="GET")
                         button.checkout-button(type="submit")
                             | PROCEED TO CHECKOUT ↗
 

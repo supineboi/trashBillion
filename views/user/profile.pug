@@ -1,0 +1,138 @@
+extends ../layouts/base
+
+block title
+    title TRASHBILLION — The Garbage Exchange
+
+block stylesheet
+    link(rel="stylesheet" href="/css/user/profile.css")
+
+block content
+    -
+        const fullName = `${user.firstName} ${user.lastName}`
+        const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
+
+    .profile-page
+        .profile-header
+            div
+                span.eyebrow YOUR PERSONAL HEADQUARTERS
+                h1 My Profile
+                p One account. Multiple questionable business decisions.
+
+            a.btn.btn-secondary(href="/trash") Explore Market
+
+        .profile-layout
+            // Profile card
+            .profile-sidebar
+                .profile-card
+                    .profile-avatar= initials
+
+                    h2= fullName
+                    p.profile-email= user.email
+
+                    span.member-badge ✦ TRASHBILLION MEMBER
+
+                    .profile-divider
+
+                    .member-since
+                        span MEMBER SINCE
+                        strong= user.createdAt
+
+                .profile-navigation
+                    a.profile-nav-item.active(href="/profile")
+                        span.nav-icon 👤
+                        | Account Overview
+                        span.nav-arrow →
+
+                    a.profile-nav-item(href="/my-trash")
+                        span.nav-icon 📦
+                        | My Listings
+                        span.nav-arrow →
+
+                    a.profile-nav-item(href="/user/orders")
+                        span.nav-icon 📋
+                        | Order History
+                        span.nav-arrow →
+
+                    a.profile-nav-item(href="/portfolio")
+                        span.nav-icon 💼
+                        | My Portfolio
+                        span.nav-arrow →
+
+            // Main content
+            .profile-content
+                .welcome-card
+                    span.welcome-label ACCOUNT OVERVIEW
+                    h2 Welcome back, #{user.firstName}.
+                    p Your business empire is waiting. Probably made of cardboard.
+
+                .profile-stats
+                    .profile-stat-card
+                        span.stat-icon 📦
+                        span.stat-label TOTAL LISTINGS
+                        strong= String(user.totalListings).padStart(2, "0")
+                        a(href="/my-trash") Manage listings →
+
+                    .profile-stat-card
+                        span.stat-icon 🟢
+                        span.stat-label ACTIVE LISTINGS
+                        strong= String(user.activeListings).padStart(2, "0")
+                        a(href="/my-trash") View active listings →
+
+                    .profile-stat-card
+                        span.stat-icon 📋
+                        span.stat-label TOTAL ORDERS
+                        strong= String(user.totalOrders).padStart(2, "0")
+                        a(href="/orders") View order history →
+
+                .account-section
+                    .section-heading
+                        div
+                            h2 Personal information
+                            p Your account details and identity.
+                        a.edit-link(href="/profile/edit") Edit profile →
+
+                    .account-information
+                        .information-item
+                            span.information-label FIRST NAME
+                            strong= user.firstName
+
+                        .information-item
+                            span.information-label LAST NAME
+                            strong= user.lastName
+
+                        .information-item
+                            span.information-label EMAIL ADDRESS
+                            strong= user.email
+
+                        .information-item
+                            span.information-label MEMBER SINCE
+                            strong= user.createdAt
+
+                .account-section.quick-actions
+                    .section-heading
+                        div
+                            h2 Quick actions
+                            p Where would you like to go next?
+
+                    .quick-action-grid
+                        a.quick-action(href="/trash/sell")
+                            span.quick-action-icon +
+                            div
+                                strong List your trash
+                                p Turn unwanted waste into a questionable asset.
+
+                        a.quick-action(href="/trash")
+                            span.quick-action-icon 🔍
+                            div
+                                strong Explore marketplace
+                                p Discover the world's finest garbage.
+
+                        a.quick-action(href="/user/orders")
+                            span.quick-action-icon 📋
+                            div
+                                strong View your orders
+                                p Revisit your investment history.
+
+                .account-notice
+                    span.notice-icon ⚠
+                    p TRASHBILLION is a fictional marketplace. Your account activity represents imaginary transactions, not actual purchases, sales, or environmental impact.

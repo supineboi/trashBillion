@@ -1,64 +1,86 @@
+/**
+ * @param {import("sequelize").Sequelize} sequelize
+ * @param {typeof import("sequelize").DataTypes} DataTypes
+ * @returns {import("sequelize").ModelStatic<import("sequelize").Model>}
+ */
 
-const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/sequelize");
-
-const Trash = sequelize.define("Trash", {
-    id: {
-        type: DataTypes.STRING(10),
+module.exports = (sequelize, DataTypes) => {
+  const Trash = sequelize.define(
+    "Trash",
+    {
+      id: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        allowNull: false
-    },
-    title: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-    },
-    description: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-    category: {
-        type: DataTypes.STRING(100),
-        allowNull: false
-    },
-    quantity: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-    },
-    unit: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-    },
-    location: {
-        type: DataTypes.STRING(100),
-        allowNull: false
-    },
-    icon: {
-        type: DataTypes.STRING(20),
-        allowNull: true
-    },
-    valuation: {
-        type: DataTypes.DECIMAL(12, 2),
-        allowNull: true
-    },
-    growth: {
-        type: DataTypes.DECIMAL(8, 2),
-        allowNull: true
-    },
-    status: {
-        type: DataTypes.STRING(50),
-        defaultValue: "Available"
-    },
-    seller: {
-        type: DataTypes.STRING(100),
-        allowNull: true
-    },
-    listedOn: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
-}, {
-    tableName: "trash",
-    timestamps: false
-});
+      },
 
-module.exports = Trash;
+      sellerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+
+      imageUrl: {
+        type: DataTypes.STRING(2048),
+        allowNull: false
+      },
+
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+
+      title: {
+        type: DataTypes.STRING(150),
+        allowNull: false,
+      },
+
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+
+      growth: {
+        type: DataTypes.DECIMAL(8, 2),
+        allowNull: false,
+        defaultValue: 0,
+      },
+      
+      quantity: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+
+      unit: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+      },
+
+      location: {
+        type: DataTypes.STRING(150),
+        allowNull: false,
+      },
+
+      discoveryContext: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+
+      valuation: {
+        type: DataTypes.DECIMAL(12, 2),
+        allowNull: false,
+        defaultValue: 0,
+      },
+
+      status: {
+        type: DataTypes.ENUM("active", "inactive", "sold"),
+        allowNull: false,
+        defaultValue: "active",
+      },
+    },
+    {
+      tableName: "Trash",
+      timestamps: true,
+    }
+  );
+
+  return Trash;
+};

@@ -1,16 +1,15 @@
-const path = require('path');
-const fs = require('fs');
-const { generateListingId, icons, formattedNumber } = require('../utils/helpers');
-const Trash = require('../models/sequelize/trash');
+const { generateId, icons, formatNumber } = require('../utils/helpers');
+const {Trash, Category, User} = require('../models/sequelize');
 
 exports.getList = async (req,res) => {
     // res.sendFile(path.join(__dirname, '..', 'views', 'sellList.html'));
+    
     const trashList = await Trash.findAll();
     res.render('trash/list', { items: trashList.map(trash => ({
         ...trash.toJSON(),
-        quantity: formattedNumber(trash.quantity),
-        growth: formattedNumber(trash.growth),
-        valuation: formattedNumber(trash.valuation, true)
+        quantity: formatNumber(trash.quantity),
+        growth: formatNumber(trash.growth),
+        valuation: formatNumber(trash.valuation, true)
     })) });
 }
 
@@ -27,16 +26,43 @@ exports.getTrash = async (req,res, next) => {
 
 }
 
-exports.trashPage = (req,res) => {
+exports.trashPage = async (req,res) => {
     // res.sendFile(path.join(__dirname, '..', 'views', 'sell.html'));
-    res.render('trash/sell', {path: '/trash/sell', icons: icons});
+    const categories = await Category.findAll();
+    res.render('trash/sell', {path: '/trash/sell', categories});
 }
 
 exports.createTrash = async (req, res) => {
-    console.log('creating trash with :: ', req.body)
+    const user = req.user;
+    const {
+        title,
+        categoryId,
+        description,
+        quantity,
+        unit,
+        valuation,
+        location,
+        discoveryContext,
+        imageUrl
+    } = req.body;
+    let sellerId = req.body.sellerId;
+
+    if(!sellerId){
+        sellerId = user.id
+    }
+
     await Trash.create({
-        ...req.body,
-        id: generateListingId()
+        id: generateId(),
+        title,
+        description,
+        quantity,
+        unit,
+        valuation,
+        location,
+        discoveryContext,
+        imageUrl,
+        categoryId,
+        sellerId
     });
     // res.status(200).sendFile(path.join(__dirname, '..', 'views', 'sellList.html'));
     res.redirect('/trash');

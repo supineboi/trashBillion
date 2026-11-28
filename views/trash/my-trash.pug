@@ -1,0 +1,146 @@
+
+extends ../layouts/base
+
+block title
+    title TRASHBILLION — The Garbage Exchange
+
+block stylesheet
+    link(rel="stylesheet" href="/css/trash/list.css")
+
+block content
+  .my-trash-page
+    .my-trash-container
+
+      .my-trash-header
+        .my-trash-heading
+          span.my-trash-eyebrow SELLER DASHBOARD
+          h1 Your trash. Your empire.
+          p Manage your assets and keep your imaginary empire growing.
+
+        a.add-trash-btn(href="/trash/sell") + LIST NEW ASSET
+
+      .trash-stats
+        .trash-stat-card
+          span.stat-label TOTAL LISTINGS
+          strong.stat-value 08
+          span.stat-note Assets in your empire
+
+        .trash-stat-card
+          span.stat-label ACTIVE LISTINGS
+          strong.stat-value 06
+          span.stat-note Currently in the marketplace
+
+        .trash-stat-card
+          span.stat-label TOTAL VALUATION
+          strong.stat-value ₹48,50,000
+          span.stat-note Entirely fictional wealth
+
+      .my-trash-toolbar
+        .toolbar-heading
+          h2 Your assets
+          span 8 LISTINGS
+
+        .trash-filters
+          input(
+            type="search"
+            name="search"
+            placeholder="Search your assets..."
+            aria-label="Search your trash listings"
+          )
+
+          select(name="status" aria-label="Filter by status")
+            option(value="all") All statuses
+            option(value="active") Active
+            option(value="inactive") Inactive
+            option(value="sold") Sold
+
+      .my-trash-table-wrapper
+        table.my-trash-table
+          thead
+            tr
+              th Asset
+              th Category
+              th Quantity
+              th Valuation
+              th Status
+              th Actions
+
+          tbody
+            -
+              const listings = [
+                {
+                  id: 1,
+                  title: 'Premium Roadside Plastic',
+                  category: 'Plastic',
+                  icon: '🧴',
+                  quantity: '24 bottles',
+                  valuation: 999999,
+                  status: 'active'
+                },
+                {
+                  id: 2,
+                  title: 'Vintage Cardboard Empire',
+                  category: 'Cardboard',
+                  icon: '📦',
+                  quantity: '18 kg',
+                  valuation: 450000,
+                  status: 'active'
+                },
+                {
+                  id: 3,
+                  title: 'Luxury Riverbank Waste',
+                  category: 'General waste',
+                  icon: '🗑️',
+                  quantity: '12 kg',
+                  valuation: 1200000,
+                  status: 'inactive'
+                },
+                {
+                  id: 4,
+                  title: 'Industrial Metal Collection',
+                  category: 'Metal',
+                  icon: '🔩',
+                  quantity: '35 kg',
+                  valuation: 650000,
+                  status: 'sold'
+                }
+              ]
+
+              const formatCurrency = (value) =>
+                Number(value).toLocaleString('en-IN', {
+                  style: 'currency',
+                  currency: 'INR',
+                  maximumFractionDigits: 0
+                })
+
+            each item in listings
+              tr
+                td
+                  .table-asset
+                    span.table-asset-icon= item.icon
+                    div
+                      strong= item.title
+                      small= `TB-${String(item.id).padStart(3, '0')}`
+
+                td= item.category
+                td= item.quantity
+                td.table-valuation= formatCurrency(item.valuation)
+
+                td
+                  span(class=`listing-status status-${item.status}`)
+                    = item.status.toUpperCase()
+
+                td
+                  .table-actions
+                    a.action-link(href=`/trash/${item.id}/edit`) Edit
+                    form(
+                      action="/trash/delete"
+                      method="POST"
+                      onsubmit="return confirm('Are you sure you want to remove this listing?')"
+                    )
+                      input(type="hidden" name="trashId" value=item.id)
+                      button.delete-action(type="submit") Delete
+
+      .my-trash-footer
+        p Showing 4 sample listings from your fictional empire.
+        a(href="/trash/sell") + Add another asset

@@ -20,7 +20,6 @@ module.exports = class Trash {
     }
 
     static async create(trash) {
-        console.log("creating trash :: ", trash)
         try {
             Loggers.error('trash', 'create', "evoke")
             await db.execute(`

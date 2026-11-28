@@ -20,7 +20,7 @@ const icons = [
     "🧽"
 ];
 
-const formattedNumber = (val, isCurrency = false) => {
+const formatNumber = (val, isCurrency = false) => {
     const options = {
         minimumFractionDigits: 0,
         maximumFractionDigits: 2
@@ -32,10 +32,17 @@ const formattedNumber = (val, isCurrency = false) => {
     }
     return Number(val).toLocaleString("en-IN", options )
 };
-const generateListingId = () => Math.floor(100000 + Math.random() * 900000);
+const generateId = () => Math.floor(100000 + Math.random() * 900000);
+
+const formatDate = (date) => date.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+})
 
 module.exports = {
     icons,
-    formattedNumber,
-    generateListingId
+    formatNumber,
+    generateId,
+    formatDate
 };

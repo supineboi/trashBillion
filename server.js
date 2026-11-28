@@ -2,10 +2,10 @@ const express = require('express');
 const indexRouter = require('./routes/index');
 const trashRoutes = require('./routes/trash');
 const userRoutes = require('./routes/user')
-const cartRoutes = require('./routes/cart')
+const portfolioRoutes = require('./routes/portfolio')
 const path = require('path');
 const { notFoundPage } = require('./controllers/error');
-const initializeModels = require('./models/sequelize');
+const {initializeModels, User} = require('./models/sequelize');
 const app = express();
 
 app.set('view engine', 'pug');
@@ -18,9 +18,20 @@ initializeModels();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(async (req,res,next) => {
+  const user = (await User.findAll())[0];
+  
+  if(user){
+    req.user = {
+      ...user.toJSON()
+    }
+  }
+  next();
+})
 app.use('/trash', trashRoutes);
 app.use('/user', userRoutes)
-app.use('/cart', cartRoutes)
+app.use('/portfolio', portfolioRoutes)
 app.use('/', indexRouter);
 app.use(notFoundPage)
 

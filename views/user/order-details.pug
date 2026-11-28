@@ -1,0 +1,109 @@
+extends ../layouts/base
+
+block title
+    title TRASHBILLION — The Garbage Exchange
+
+block stylesheet
+    link(rel="stylesheet" href="/css/user/order-details.css")
+
+block content
+    -
+        const totalItems = order.items.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+        )
+
+    .order-details-page
+        .page-top
+            a.back-link(href="/user/orders") ← Back to orders
+
+        .order-details-header
+            .header-content
+                span.eyebrow TRANSACTION RECORD
+                h1 Order details
+                p Here's the complete history of your questionable investment.
+
+            span.status-badge(class=`status-${order.status}`)= order.status
+
+        .order-reference-card
+            .reference-left
+                span.reference-label ORDER REFERENCE
+                h2= order.orderNumber
+                span.reference-date
+                    | Placed on #{order.date}
+
+            .reference-icon 📋
+
+        .order-details-layout
+            .order-items-section
+                .section-heading
+                    div
+                        h2 Acquired assets
+                        p Your imaginary acquisitions, item by item.
+                    span.item-count= `${order.items.length} ${order.items.length === 1 ? "ITEM" : "ITEMS"}`
+
+                .order-items-list
+                    each item in order.items
+                        .order-item
+                            .order-image
+                                if item.imageUrl
+                                    img(
+                                        src=item.imageUrl
+                                        alt=item.title
+                                        loading="lazy"
+                                    )
+                                else if item.icon
+                                    span= item.icon
+                                else
+                                    span 🗑️
+
+                            .item-information
+                                h3= item.title
+                                span.item-category= item.categoryName
+                                span.item-quantity= `${item.quantity} ${item.unit}`
+
+                            .item-valuation
+                                span.unit-label UNIT VALUATION
+                                strong ₹#{item.unitValuation.toLocaleString("en-IN")}
+
+                            .item-total
+                                span.total-label LINE TOTAL
+                                strong ₹#{item.lineTotal.toLocaleString("en-IN")}
+
+                .order-message
+                    span.message-icon ✦
+                    div
+                        strong An excellent addition to your portfolio.
+                        p Whether the world agrees is another matter.
+
+            aside.order-summary
+                h2 Transaction summary
+
+                .summary-row
+                    span Order reference
+                    strong= order.orderNumber
+
+                .summary-row
+                    span Order status
+                    strong= order.status.toUpperCase()
+
+                .summary-row
+                    span Total item quantity
+                    strong= `${totalItems} units`
+
+                .summary-divider
+
+                .summary-total
+                    span TOTAL FICTIONAL VALUATION
+                    strong ₹#{order.totalAmount.toLocaleString("en-IN")}
+
+                .summary-note
+                    span ⚠
+                    p This is a fictional valuation, not an amount paid.
+
+                a.btn.btn-primary(href="/trash") Explore more trash
+                a.btn.btn-secondary(href="/user/orders") Back to order history
+
+        .order-disclaimer
+            span.disclaimer-icon ⚠
+            p This is a fictional transaction record. No actual money was charged, no physical goods were purchased or delivered, and no real-world environmental impact is claimed.

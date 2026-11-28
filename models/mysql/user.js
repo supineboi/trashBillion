@@ -60,9 +60,6 @@ module.exports = class User {
             const [user, fieldData] = await db.execute(`
                 SELECT * FROM user WHERE email = ?
             `, [email])
-            console.log("this is user :: ", user
-
-            )
             Loggers.info('user', 'read', "end")
             return user?.[0]
         } catch(err) {

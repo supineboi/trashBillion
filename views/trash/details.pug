@@ -20,8 +20,15 @@ block content
             section.details-main
 
                 .details-category
-                    span.category-icon #{item.icon}
-                    span #{item.category}
+                    if item.imageUrl
+                        img.category-image(
+                            src=item.imageUrl
+                            alt=item.title
+                        )
+                    else
+                        .category-image-placeholder 🗑️
+
+                    span.category-name #{item.category}
 
                 .details-heading
                     .listing-id LISTING ##{item.id}
@@ -45,37 +52,66 @@ block content
                             strong= item.category
 
                         .specification
-                            span.spec-label QUANTITY
-                            strong= item.quantity
+                            span.spec-label AVAILABLE QUANTITY
+                            strong #{item.quantity} #{item.unit}
 
                         .specification
                             span.spec-label LOCATION
                             strong= item.location
 
-            // Seller information
-            aside.seller-card
+            // Portfolio panel
+            aside.seller-card.portfolio-card
 
                 .seller-card-top
                     span ✳
-                    span SELLER INFORMATION
+                    span INVESTMENT OPPORTUNITY
 
-                h2 Interested in this treasure?
+                h2 Found your next big asset?
 
                 p
-                    | Don't let this opportunity go to waste.
-                    | Contact the seller directly.
+                    | Add this extraordinary piece of trash to your
+                    | portfolio. Your financial advisor may need a moment.
 
-                .seller-contact
-                    span.spec-label CONTACT NUMBER
-                    strong +91 #{item.phone}
+                .portfolio-valuation
+                    span.spec-label IMAGINARY VALUATION
+                    strong= item.valuation
 
-                a.contact-button(href=`tel:+91${item.phone}`)
-                    | CONTACT SELLER
-                    span ↗
+                form.portfolio-add-form(
+                    action="/portfolio/add"
+                    method="POST"
+                )
+                    input(
+                        type="hidden"
+                        name="listingId"
+                        value=item.id
+                    )
 
-                p.seller-note
-                    | TRASHBILLION connects trash with opportunity.
-                    | Make your deal responsibly.
+                    label(for="quantity") SELECT QUANTITY
+
+                    .quantity-control
+                        input#quantity(
+                            type="number"
+                            name="quantity"
+                            min="1"
+                            max=item.quantity
+                            step="any"
+                            value="1"
+                            required
+                        )
+
+                        span= item.unit
+
+                    button.add-portfolio-btn(type="submit")
+                        | + ADD TO PORTFOLIO
+                        span ↗
+
+                p.portfolio-note
+                    | NO MONEY INVOLVED. JUST QUESTIONABLE AMBITION.
+
+                .seller-note
+                    | Every piece of trash has a story.
+                    | Unfortunately, not every story has a happy ending.
+                    | Dispose responsibly.
 
         footer.details-footer
             p © 2026 TRASHBILLION. All trash reserved.

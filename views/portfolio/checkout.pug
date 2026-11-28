@@ -1,0 +1,152 @@
+
+extends ../layouts/base
+
+block title
+    title Final Investment Decision — TRASHBILLION
+
+block stylesheet
+    link(rel="stylesheet" href="/css/cart/checkout.css")
+
+block content
+    -
+        const investments = portfolio
+
+        const [totalPrice, totalGrowth] = investments.reduce(
+            (sum, item) => [
+                sum[0] + item.price,
+                sum[1] + item.growth
+            ],
+            [0, 0]
+        )
+
+        const formatPrice = (price) =>
+            '₹' + Number(price).toLocaleString('en-IN')
+
+    main.checkout-container
+        a.back-link(href="/portfolio") ← BACK TO YOUR PORTFOLIO
+
+        section.checkout-header
+            .eyebrow ✳ FINAL INVESTMENT DECISION
+
+            h1
+                | ONE LAST STEP.
+                br
+                span ABSOLUTELY NO MONEY.
+
+            p
+                | You've analysed the assets. You've built your empire.
+                | Now it's time to make history. Probably a very questionable kind.
+
+        section.checkout-layout
+            .checkout-main
+                .confirmation-panel
+                    .panel-heading
+                        span 01 / INVESTOR DECLARATION
+                        span REQUIRED READING
+
+                    h2 Confirm your questionable decision.
+
+                    p
+                        | By proceeding, you acknowledge that you're participating
+                        | in a fictional marketplace where garbage has imaginary
+                        | financial value.
+
+                    .declaration-list
+                        .declaration
+                            span ✓
+                            p I understand that no actual money will be charged.
+
+                        .declaration
+                            span ✓
+                            p I understand that no garbage will be purchased or delivered.
+
+                        .declaration
+                            span ✓
+                            p I understand that all financial returns are imaginary.
+
+                        .declaration
+                            span ✓
+                            p I acknowledge that littering is a real-world problem.
+
+                .message-panel
+                    .eyebrow A FINAL WORD FROM MANAGEMENT
+
+                    h2
+                        | You've invested in garbage.
+                        br
+                        span The world has enough of it already.
+
+                    p
+                        | Somewhere, a street corner is still waiting for someone
+                        | to care enough to put the rubbish in the right place.
+
+            aside.checkout-sidebar
+                .order-panel
+                    .eyebrow YOUR INVESTMENT SUMMARY
+
+                    h2 Portfolio snapshot
+
+                    .snapshot-meta
+                        span #{investments.length} ASSETS IN YOUR EMPIRE
+                        span FICTIONAL HOLDINGS
+
+                    .order-items
+                        each item in investments
+                            article.order-item
+                                .order-image
+                                    if item.imageUrl
+                                        img(
+                                            src=item.imageUrl
+                                            alt=item.title
+                                            loading="lazy"
+                                        )
+                                    else if item.icon
+                                        span= item.icon
+                                    else
+                                        span 🗑️
+
+                                .order-details
+                                    .order-id ##{item.id}
+                                    strong= item.title
+                                    span #{item.category} · #{item.quantity} #{item.unit}
+
+                                .order-metrics
+                                    .order-growth
+                                        span IMAGINARY GROWTH
+                                        strong +#{item.growth}%
+
+                                    .order-price
+                                        span CURRENT VALUE
+                                        strong= formatPrice(item.price)
+
+                    .order-total
+                        span TOTAL IMAGINARY PORTFOLIO VALUE
+                        strong= formatPrice(totalPrice)
+
+                        .total-growth
+                            span UNREALIZED FICTIONAL RETURNS
+                            strong +#{totalGrowth}%
+
+                    .payment-method
+                        span PAYMENT METHOD
+                        strong 🪄 Pure imagination
+
+                    form(action="/portfolio/checkout" method="POST")
+                        label.confirm-checkbox
+                            input(
+                                type="checkbox"
+                                name="acknowledged"
+                                value="true"
+                                required
+                            )
+                            span I accept that this entire transaction is fictional.
+
+                        button.confirm-button(type="submit")
+                            | CONFIRM MY QUESTIONABLE DECISION ↗
+
+                    p.checkout-disclaimer
+                        | No payment gateway. No actual transaction.
+                        | Just an unnecessarily serious garbage investment.
+
+    footer
+        p © 2026 TRASHBILLION. All trash reserved.

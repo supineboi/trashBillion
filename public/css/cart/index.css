@@ -142,6 +142,17 @@
     font-size: 27px;
     background: #ffffff08;
     border-radius: 9px;
+    overflow: hidden;
+}
+
+.item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-icon span {
+    font-size: 27px;
 }
 
 .item-id {

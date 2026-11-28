@@ -1,0 +1,86 @@
+extends ../layouts/base
+
+block title
+    title TRASHBILLION — The Garbage Exchange
+
+block stylesheet
+    link(rel="stylesheet" href="/css/user/orders.css")
+
+block content
+    -
+        const totalOrders = orders.length
+        const confirmedOrders = orders.filter(order => order.status === "confirmed").length
+        const totalValuation = orders
+            .filter(order => order.status === "confirmed")
+            .reduce((sum, order) => sum + Number(order.totalAmount), 0)
+
+    .orders-page
+        .orders-header
+            .orders-heading
+                span.eyebrow YOUR FINANCIAL MASTERPIECES
+                h1 Order History
+                p Every questionable investment, documented for posterity.
+
+            a.btn.btn-secondary(href="/trash") Explore Market
+
+        .orders-stats
+            .stat-card
+                span.stat-label TOTAL ORDERS
+                strong.stat-value= String(totalOrders).padStart(2, "0")
+                span.stat-note Your acquisition history
+
+            .stat-card
+                span.stat-label CONFIRMED ORDERS
+                strong.stat-value= String(confirmedOrders).padStart(2, "0")
+                span.stat-note Imaginary deals completed
+
+            .stat-card
+                span.stat-label TOTAL PORTFOLIO VALUE
+                strong.stat-value ₹#{totalValuation.toLocaleString("en-IN")}
+                span.stat-note Fictional valuation
+
+        .orders-section
+            .section-heading
+                div
+                    h2 Your transactions
+                    p A complete record of your questionable decisions.
+                span.order-count= `${totalOrders} ORDERS`
+
+            if orders.length
+                .orders-list
+                    each order in orders
+                        .order-card
+                            .order-main
+                                .order-icon 🧾
+
+                                .order-info
+                                    span.order-reference= order.orderNumber
+                                    h3= order.orderNumber
+                                    span.order-date= order.date
+
+                            .order-items-preview
+                                each item in order.items
+                                    span.item-preview(title=item.title)= item.icon
+
+                                span.item-count
+                                    = `${order.itemCount} ${order.itemCount === 1 ? "item" : "items"}`
+
+                            .order-value
+                                span.order-label PORTFOLIO VALUE
+                                strong ₹#{order.totalAmount.toLocaleString("en-IN")}
+
+                            .order-status
+                                span.status-badge(class=`status-${order.status}`)= order.status
+
+                            a.order-action(href=`/user/orders/${order.id}`) View details
+                                span →
+            else
+                .orders-empty
+                    .empty-icon 📂
+                    h3 No investments yet.
+                    p Your future questionable decisions will appear here.
+                    a.btn.btn-primary(href="/trash") Explore the market
+
+        .orders-disclaimer
+            span.disclaimer-icon ⚠
+            p These are fictional transactions. No actual money was spent, no garbage was purchased, and no delivery was made.

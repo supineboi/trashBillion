@@ -149,6 +149,23 @@ h1 span {
 }
 
 .category-icon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.category-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.image-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 65px;
 }
 
@@ -512,6 +529,136 @@ footer span {
     color: var(--white);
 }
 
+
+/* =========================================
+   PORTFOLIO ACTIONS — LISTING CARDS
+========================================= */
+
+.listing-card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    border-color: #c6ff4d;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.listing-card:focus-visible {
+    outline: none;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Action container */
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+/* Inspect listing */
+
+.asset-details-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+    color: #999b91;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.asset-details-link:hover {
+    color: #c6ff4d;
+}
+
+.asset-details-link .arrow {
+    color: #c6ff4d;
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.asset-details-link:hover .arrow {
+    transform: translate(3px, -3px);
+}
+
+/* Add to portfolio */
+
+.portfolio-form {
+    width: 100%;
+}
+
+.add-portfolio-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    background: #c6ff4d;
+    border: 1px solid #c6ff4d;
+    border-radius: 7px;
+    color: #10110e;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-portfolio-btn span {
+    font-size: 19px;
+    line-height: 10px;
+}
+
+.add-portfolio-btn:hover {
+    background: #d8ff83;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(198, 255, 77, 0.15);
+}
+
+.add-portfolio-btn:active {
+    transform: translateY(0);
+}
+
+.add-portfolio-btn:focus-visible {
+    outline: 2px solid #f4f4ed;
+    outline-offset: 3px;
+}
+
+.portfolio-hint {
+    margin: 0;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.5;
+    text-align: center;
+}
+
 /* Responsive */
 
 @media(max-width: 600px) {
@@ -526,6 +673,14 @@ footer span {
 
     .market-banner h2 {
         font-size: 19px;
+    }
+    
+    .card-actions {
+        gap: 12px;
+    }
+
+    .add-portfolio-btn {
+        min-height: 48px;
     }
 }
 
@@ -584,3 +739,4 @@ footer span {
 .listing-card:hover .card-action .arrow {
     transform: translate(3px, -3px);
 }
+

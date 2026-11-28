@@ -69,47 +69,93 @@ block content
                 .eyebrow THE ASSET EXCHANGE
                 h2 Latest investment opportunities
 
-            span 06 ASSETS FOUND
+            span #{listings.length} ASSETS FOUND
 
-        section.grid
-            each item in listings
-                a.listing-card(href=`/trash/${item.id}`)
-                    .card-top
-                        .category-icon #{item.icon}
+        if listings.length
+            section.grid
+                each item in listings
+                    article.listing-card
+                        .card-top
+                            .category-icon
+                                if item.imageUrl
+                                    img(
+                                        src=item.imageUrl
+                                        alt=item.title
+                                        loading="lazy"
+                                    )
+                                else
+                                    span.image-placeholder 🗑️
 
-                        span.status #{item.status}
+                            span.status= item.status
+                            span.asset-growth +#{item.growth}%
 
-                        span.asset-growth +#{item.growth}%
+                        .card-body
+                            .listing-id ##{item.id}
 
-                    .card-body
-                        .listing-id ##{item.id}
+                            h3= item.title
 
-                        h3 #{item.title}
+                            p.description= item.description
 
-                        p.description #{item.description}
+                            .details
+                                div
+                                    .detail-label CATEGORY
+                                    .detail-value= item.category
 
-                        .details
-                            div
-                                .detail-label CATEGORY
-                                .detail-value #{item.category}
+                                div
+                                    .detail-label QUANTITY
+                                    .detail-value #{item.quantity} #{item.unit}
 
-                            div
-                                .detail-label QUANTITY
-                                .detail-value #{item.quantity} #{item.unit}
+                            .info
+                                .location
+                                    span 📍
+                                    span= item.location
 
-                        .info
-                            .location
-                                span 📍
-                                span #{item.location}
+                            .valuation
+                                div
+                                    .detail-label CURRENT IMAGINARY VALUATION
+                                    .valuation-price= item.valuation
 
-                        .valuation
-                            div
-                                .detail-label CURRENT IMAGINARY VALUATION
-                                .valuation-price #{item.valuation}
+                            .card-actions
+                                a.asset-details-link(href=`/trash/${item.id}`)
+                                    span INSPECT THE ASSET
+                                    span.arrow ↗
 
-                        .card-action
-                            span ANALYSE THIS ASSET
-                            span.arrow ↗
+                                form.portfolio-form(
+                                    action="/portfolio/add"
+                                    method="POST"
+                                )
+                                    input(
+                                        type="hidden"
+                                        name="listingId"
+                                        value=item.id
+                                    )
+
+                                    input(
+                                        type="hidden"
+                                        name="quantity"
+                                        value="1"
+                                    )
+
+                                    button.add-portfolio-btn(type="submit")
+                                        span +
+                                        | ADD TO PORTFOLIO
+
+                                p.portfolio-hint
+                                    | No money involved. Just questionable ambition.
+
+        else
+            section.empty-state
+                .empty-icon 🗑️
+                .eyebrow MARKETPLACE STATUS: EMPTY
+                h2
+                    | EVEN THE TRASH
+                    br
+                    span HAS LEFT.
+                p
+                    | No assets are available right now.
+                    | Perhaps the garbage market has finally crashed.
+
+                a.empty-btn(href="/trash/sell") LIST YOUR TRASH
 
         section.market-disclaimer
             span ✳

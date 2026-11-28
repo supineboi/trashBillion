@@ -1,50 +1,52 @@
 extends ../layouts/base
 
 block title
-    title Login | TRASHBILLION
+    title TRASHBILLION — The World's Most Exclusive Garbage Market
 
 block stylesheet
-    link(rel="stylesheet" href="/css/user/login.css")
-    link(rel="stylesheet" href="/css/layouts/error-modal.css")
+    link(rel="stylesheet" href="/css/user/auth.css")
 
 block content
-    main.auth-container
-        section.auth-card
-            .auth-heading
-                .eyebrow ✳ WELCOME BACK, TRASH TYCOON
-                h1
-                    | Welcome 
-                    span back.
-                p Your next fortune is just one login away.
+  .auth-page
+    .auth-container
 
-            form(action="/user/login" method="POST")
-                .form-group
-                    label(for="email") EMAIL ADDRESS
-                    input#email(
-                        type="email"
-                        name="email"
-                        placeholder="you@example.com"
-                        autocomplete="email"
-                        required
-                    )
+      .auth-card
+        .auth-heading
+          span.auth-eyebrow WELCOME BACK, INVESTOR
+          h1 Your empire awaits.
+          p Sign in to manage your questionable investments.
 
-                .form-group
-                    label(for="password") PASSWORD
-                    input#password(
-                        type="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                    )
+        form.auth-form(action="/user/login" method="POST")
+          .form-group
+            label(for="email") Email address
+            input#email(
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            )
 
-                button.submit-btn(type="submit") LOGIN TO YOUR ACCOUNT ↗
+          .form-group
+            .label-row
+              label(for="password") Password
+            input#password(
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            )
 
-            .auth-footer
-                p
-                    | Don't have an account?
-                    a(href="/user/signup") 
-                        | Sign up
-    
-    include ../layouts/error-modal
-    script(src="/js/layouts/error-modal.js" defer)
+          button.auth-submit(type="submit") SIGN IN TO YOUR EMPIRE
+
+        .auth-divider
+          span NEW TO THE TRASH ECONOMY?
+
+        p.auth-switch
+          | Don't have an account?
+          a(href="/user/signup") Create one
+
+      .auth-footer
+        p No real wealth is created here. Probably.
+

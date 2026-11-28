@@ -1,72 +1,86 @@
 extends ../layouts/base
 
 block title
-    title Sign Up | TRASHBILLION
+    title TRASHBILLION — The World's Most Exclusive Garbage Market
 
 block stylesheet
-    link(rel="stylesheet" href="/css/user/signup.css")
-    link(rel="stylesheet" href="/css/layouts/error-modal.css")
+    link(rel="stylesheet" href="/css/user/auth.css")
 
 block content
-    main.auth-container
-        section.auth-card
-            .auth-heading
-                .eyebrow ✳ YOUR JOURNEY STARTS HERE
-                h1
-                    | Join the 
-                    span empire.
-                p Create an account. Turn your trash into treasure.
+  .auth-page
+    .auth-container
 
-            form(action="/user/signup" method="POST")
-                .name-row
-                    .form-group
-                        label(for="firstName") FIRST NAME
-                        input#firstName(
-                            type="text"
-                            name="firstName"
-                            placeholder="John"
-                            autocomplete="given-name"
-                            required
-                        )
+      .auth-card
+        .auth-heading
+          span.auth-eyebrow JOIN THE ELITE
+          h1 Build your trash empire.
+          p 
+            | Create an account. 
+            | Your questionable financial journey starts here.
 
-                    .form-group
-                        label(for="lastName") LAST NAME
-                        input#lastName(
-                            type="text"
-                            name="lastName"
-                            placeholder="Doe"
-                            autocomplete="family-name"
-                            required
-                        )
+        form.auth-form(action="/user/signup" method="POST")
+          .form-row
+            .form-group
+              label(for="firstName") First name
+              input#firstName(
+                type="text"
+                name="firstName"
+                placeholder="John"
+                autocomplete="given-name"
+                required
+              )
 
-                .form-group
-                    label(for="email") EMAIL ADDRESS
-                    input#email(
-                        type="email"
-                        name="email"
-                        placeholder="you@example.com"
-                        autocomplete="email"
-                        required
-                    )
+            .form-group
+              label(for="lastName") Last name
+              input#lastName(
+                type="text"
+                name="lastName"
+                placeholder="Doe"
+                autocomplete="family-name"
+                required
+              )
 
-                .form-group
-                    label(for="password") PASSWORD
-                    input#password(
-                        type="password"
-                        name="password"
-                        placeholder="Create a password"
-                        autocomplete="new-password"
-                        minlength="8"
-                        required
-                    )
+          .form-group
+            label(for="email") Email address
+            input#email(
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            )
 
-                button.submit-btn(type="submit") CREATE MY ACCOUNT ↗
+          .form-group
+            label(for="password") Password
+            input#password(
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            )
 
-            .auth-footer
-                p
-                    | Already have an account?
-                    a(href="/user/login") 
-                        | Login
+          .form-group
+            label(for="confirmPassword") Confirm password
+            input#confirmPassword(
+              type="password"
+              name="confirmPassword"
+              placeholder="Enter your password again"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            )
 
-    include ../layouts/error-modal
-    script(src="/js/layouts/error-modal.js")
+          button.auth-submit(type="submit") CREATE MY EMPIRE
+
+        .auth-divider
+          span ALREADY PART OF THE ECONOMY?
+
+        p.auth-switch
+          | Already have an account?
+          a(href="/user/login") Sign in
+
+      .auth-footer
+        p No experience required. No actual wealth guaranteed.
+

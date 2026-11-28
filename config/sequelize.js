@@ -13,7 +13,8 @@ const sequelize = new Sequelize(
     PASSWORD, 
     {
         dialect: 'mysql',
-        host: HOST
+        host: HOST,
+        logging: false
     }
     
 );

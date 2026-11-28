@@ -1,157 +1,167 @@
 extends ../layouts/base
 
-block title 
-    title Sell Your Garbage | TRASHBILLION
+block title
+    title TRASHBILLION — The Garbage Exchange
 
 block stylesheet
     link(rel="stylesheet" href="/css/trash/sell.css")
 
 block content
-    main.container
+  .sell-page
+    .sell-container
 
-        section
-            .eyebrow ✳ THE ROAD TO RICHES STARTS HERE
-
-            h1
-                | GOT
-                br
-                | TRASH?
-                br
-                span GET PAID.
-
-            p.intro
-                | That garbage you've been ignoring?
-                | Someone might be willing to pay for it.
-                | Stop looking at it as waste. Start looking
-                | at it as your next business opportunity.
-
-            .info-card
-                h3 💡 PRO TIP FOR FUTURE BILLIONAIRES
-                p
-                    | Cardboard, plastic, metal, newspapers...
-                    | Your house might be sitting on an
-                    | untapped goldmine. Collect only waste
-                    | you're authorized to collect.
-
-
-        section.form-card
-
-            #formContent
-
-                .form-heading
-                    h2 List Your Trash.
-                    p Every empire starts with a little garbage.
-
-                form(action="/trash/sell" method="POST" id="sellForm")
-
-                    .form-group
-                        label(for="category") WHAT ARE YOU SELLING?
-                        select#category(name="category" required)
-                            option(value="") Select garbage category
-                            option Plastic
-                            option Paper & Newspapers
-                            option Cardboard
-                            option Metal & Aluminium
-                            option Glass
-                            option Electronic Waste
-                            option Mixed Recyclable Waste
-                            option Other
-
-                    .row
-                        .form-group
-                            label(for="title") GIVE YOUR GARBAGE A TITLE
-                            input#title(
-                                type="text"
-                                name="title"
-                                placeholder="e.g. Old Cardboard Boxes"
-                                required
-                            )
-                        .form-group
-                            label(for="icon") CHOOSE AN ICON
-                            select#icon(name="icon" required)
-                                option(value="") Select an icon
-                                for icon in icons
-                                    option(value=icon) #{icon}
-
-                    .form-group
-                        label(for="description") DESCRIBE YOUR TREASURE
-                        textarea#description(
-                            name="description"
-                            placeholder="Tell us about your precious garbage..."
-                            required
-                        )
-
-                    .row
-                        .form-group
-                            label(for="quantity") ESTIMATED QUANTITY
-                            input#quantity(
-                                type="number"
-                                name="quantity"
-                                min="0.1"
-                                step="0.1"
-                                placeholder="e.g. 10"
-                                required
-                            )
-
-                        .form-group
-                            label(for="unit") UNIT
-                            select#unit(name="unit" required)
-                                option(value="kg") Kilograms
-                                option(value="pieces") Pieces
-                                option(value="bags") Bags
-
-                    .form-group
-                        label(for="location") PICKUP LOCATION
-                        input#location(
-                            type="text"
-                            name="location"
-                            placeholder="Enter your area / city"
-                            required
-                        )
-
-                    .form-group
-                        label(for="phone") YOUR CONTACT NUMBER
-                        input#phone(
-                            type="tel"
-                            name="phone"
-                            placeholder="Enter 10-digit mobile number"
-                            pattern="0-9]{10}"
-                            maxlength="10"
-                            required
-                        )
-
-                    button.submit-btn(type="submit")
-                        | SUBMIT MY GARBAGE ↗
-
-                    p.terms
-                        | By submitting, you confirm that you own the
-                        | waste or have permission to sell it.
-                        | No trespassing. No stealing. Just trash.
-
-
-            .success#successMessage
-                .emoji 🤑
-
-                h2
-                    | CONGRATULATIONS,
-                    br
-                    span TRASH TYCOON!
-
-                p
-                    | Your garbage listing has been submitted
-                    | in this demo. Your journey towards
-                    | becoming the world's first trash billionaire
-                    | has officially begun.
-
-                button(onclick="window.location.href='/'")
-                    | BACK TO HOMEPAGE ↗
-
-
-    // Footer
-    footer
-        p © 2026 TRASHBILLION. All trash reserved.
-
+      .sell-header
+        .sell-eyebrow SELL YOUR ASSETS
+        h1 Turn your trash into a <span>fortune.</span>
         p
-            | Turning 
-            span waste into wealth.
-            |  Literally.
+          | Every great empire starts somewhere.
+          | Yours starts with something someone threw away.
+
+      .sell-layout
+        .sell-main
+          form.sell-form(action="/trash/sell" method="POST")
+
+            .sell-section
+              .section-heading
+                span.section-number 01
+                div
+                  h2 Asset information
+                  p Tell the world what you're offering.
+              .sell-grid
+                .sell-field
+                  label(for="title") Listing title
+                  input#title(
+                    type="text"
+                    name="title"
+                    placeholder="e.g. Premium roadside plastic collection"
+                    maxlength="150"
+                    required
+                  )
+
+                .sell-field
+                  label(for="categoryId") Category
+                  select#categoryId(name="categoryId" required)
+                      option(value="" selected disabled) Select a category
+                      each category in categories
+                        option(value=category.id) #{category.icon} #{category.name}
+
+              .sell-field
+                label(for="description") Description
+                textarea#description(
+                  name="description"
+                  rows="5"
+                  placeholder="Describe your extraordinary collection..."
+                  required
+                )
+
+              .sell-field
+                label(for="imageUrl") Asset image URL
+                input#imageUrl(
+                    type="url"
+                    name="imageUrl"
+                    placeholder="https://example.com/your-trash-image.jpg"
+                    maxlength="2048"
+                )
+                span.field-hint Paste a direct link to your asset image.
+
+            .sell-section
+              .section-heading
+                span.section-number 02
+                div
+                  h2 Quantity & valuation
+                  p Numbers that make absolutely no financial sense.
+
+              .sell-grid
+                .sell-field
+                  label(for="quantity") Available quantity
+                  input#quantity(
+                    type="number"
+                    name="quantity"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="e.g. 25"
+                    required
+                  )
+
+                .sell-field
+                  label(for="unit") Unit
+                  select#unit(name="unit" required)
+                    option(value="" selected disabled) Select unit
+                    option(value="kg") Kilograms (kg)
+                    option(value="pieces") Pieces
+                    option(value="litres") Litres
+                    option(value="boxes") Boxes
+
+              .sell-field
+                label(for="valuation") valuation (₹)
+                input#valuation(
+                  type="number"
+                  name="valuation"
+                  min="0"
+                  step="0.01"
+                  placeholder="e.g. 999999"
+                  required
+                )
+                span.field-hint Your imaginary market valuation. Not an actual selling price.
+
+            .sell-section
+              .section-heading
+                span.section-number 03
+                div
+                  h2 Location & discovery
+                  p Every legendary asset has an origin story.
+
+              .sell-field
+                label(for="location") Location
+                input#location(
+                  type="text"
+                  name="location"
+                  placeholder="e.g. Bhopal, Madhya Pradesh"
+                  maxlength="150"
+                  required
+                )
+
+              .sell-field
+                label(for="discoveryContext") Discovery story
+                textarea#discoveryContext(
+                  name="discoveryContext"
+                  rows="3"
+                  placeholder="Where did this legendary asset come from?"
+                )
+
+            .sell-submit-area
+              p.sell-disclaimer
+                | By publishing, you confirm this is a fictional marketplace listing.
+                | No actual sale, payment or delivery will take place.
+
+              button.sell-submit(type="submit") PUBLISH MY ASSET ↗
+
+        aside.sell-sidebar
+          .sell-tip-card
+            span.tip-icon ✦
+            span.tip-label THE SELLER'S PLAYBOOK
+            h3 Think like a billionaire.
+            p
+              | A good listing needs a ridiculous title,
+              | a convincing description and an origin story.
+
+            .tip-divider
+
+            .tip-item
+              span ✓
+              p Give your asset a memorable name.
+
+            .tip-item
+              span ✓
+              p Describe its unique characteristics.
+
+            .tip-item
+              span ✓
+              p Be honest about its quantity and location.
+
+          .sell-sidebar-note
+            span 🌍
+            p
+              | Listing trash here doesn't mean it has been cleaned up.
+              | The real-world problem still exists.
+

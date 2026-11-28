@@ -30,20 +30,33 @@
 .details-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 330px;
-    gap: 65px;
+    gap: 0;
     align-items: start;
 }
 
-.details-category {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 35px;
+.category-image,
+.category-image-placeholder {
+    width: 100%;
+    max-width: none;
+    height: 280px;
+    border: 1px solid rgba(198, 255, 77, .2);
+    border-radius: 14px 0 0 14px;
+    background: #181a15;
+}
+
+.category-image {
+    display: block;
+    object-fit: cover;
+}
+
+.category-image-placeholder {
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+}
+
+.category-name {
     color: #c6ff4d;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
 }
 
 .category-icon {
@@ -242,7 +255,131 @@
     text-decoration: none;
 }
 
+/* Portfolio panel */
+
+.portfolio-card {
+    position: sticky;
+    top: 30px;
+}
+
+.portfolio-card h2 {
+    margin-top: 30px;
+}
+
+.portfolio-valuation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.portfolio-valuation strong {
+    color: #c6ff4d;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 27px;
+}
+
+/* Add to portfolio form */
+
+.portfolio-add-form {
+    margin-top: 25px;
+}
+
+.portfolio-add-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #999b91;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 7px;
+    background: #10110e;
+}
+
+.quantity-control input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f4f4ed;
+    font: inherit;
+    font-size: 15px;
+}
+
+.quantity-control input:focus {
+    outline: none;
+}
+
+.quantity-control:focus-within {
+    border-color: #c6ff4d;
+}
+
+.quantity-control span {
+    color: #999b91;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.add-portfolio-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 14px;
+    padding: 16px 18px;
+    border: none;
+    border-radius: 7px;
+    background: #c6ff4d;
+    color: #10110e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.add-portfolio-btn:hover {
+    transform: translateY(-2px);
+    background: #d6ff80;
+}
+
+.add-portfolio-btn span {
+    font-size: 18px;
+}
+
+.add-portfolio-btn:focus-visible {
+    outline: 2px solid #f4f4ed;
+    outline-offset: 4px;
+}
+
+.portfolio-note {
+    margin: 14px 0 0;
+    color: #77796f;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: .8px;
+    text-align: center;
+}
+
 @media (max-width: 760px) {
+     .portfolio-card {
+        position: static;
+    }
+
     .details-layout {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -262,6 +399,12 @@
 }
 
 @media (max-width: 420px) {
+    .category-image,
+    .category-image-placeholder {
+        height: 210px;
+        border-radius: 14px;
+    }
+
     .specification-grid {
         grid-template-columns: 1fr;
     }
